@@ -43,4 +43,7 @@ dependencies {
     implementation(kotlin("script-runtime"))
 
     implementation ("com.airbnb.android:lottie:4.0.0")
+
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
+
 }

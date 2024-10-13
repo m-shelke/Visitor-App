@@ -7,17 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".WelcomeActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/welcome_img"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-<!--    <ImageView-->
+    <!--    <ImageView-->
 <!--        android:id="@+id/imageView2"-->
 <!--        android:layout_width="100dp"-->
 <!--        android:layout_height="100dp"-->
@@ -55,25 +45,34 @@
 <!--        app:layout_constraintStart_toStartOf="@+id/textView"-->
 <!--        app:layout_constraintTop_toBottomOf="@+id/textView" />-->
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="225dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/stranger"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/getStartedBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/black"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#6B708C"
+        android:fontFamily="@font/roboto_bold"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
         android:text="Get Started"
-        android:textColor="@color/white"
         android:textAllCaps="true"
-        android:outlineSpotShadowColor="@color/white"
+        android:textColor="@color/black"
         app:cornerRadius="50dp"
-        android:fontFamily="@font/roboto_bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
-        app:layout_constraintVertical_bias="1"
-        android:layout_marginBottom="12dp"/>
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
