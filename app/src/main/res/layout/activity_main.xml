@@ -72,9 +72,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView2">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Earn Coin : Ads"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+
         <ImageView
             android:layout_width="25dp"
             android:layout_height="20dp"
+            android:layout_marginLeft="5dp"
             android:src="@drawable/coinbox" />
 
     </LinearLayout>
