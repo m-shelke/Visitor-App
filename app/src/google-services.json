@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "361059997917",
+    "project_id": "visitor-app-7ef6e",
+    "storage_bucket": "visitor-app-7ef6e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:361059997917:android:4c962e1e2f29da1d8ee334",
+        "android_client_info": {
+          "package_name": "com.example.visitorapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGa8P4LcWzpu9m304Zo0UfTfnDCI43vr4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

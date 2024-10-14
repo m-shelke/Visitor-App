@@ -1,10 +1,17 @@
 plugins {
     alias(libs.plugins.android.application)
+
+    // Add the Google services Gradle plugin
+    apply { ("com.google.gms.google-services") }
 }
 
 android {
     namespace = "com.example.visitorapp"
     compileSdk = 34
+
+    buildFeatures {
+        viewBinding = true
+    }
 
     defaultConfig {
         applicationId = "com.example.visitorapp"
@@ -42,8 +49,24 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     implementation(kotlin("script-runtime"))
 
+//    Lottie animation Dependency
     implementation ("com.airbnb.android:lottie:4.0.0")
 
+//    Circular imageview Dependency
     implementation ("de.hdodenhof:circleimageview:3.1.0")
+
+//    Firebase Realtime Database Dependency
+
+    // Import the Firebase BoM
+    implementation(platform("com.google.firebase:firebase-bom:33.4.0"))
+    // TODO: Add the dependencies for Firebase products you want to use
+    // When using the BoM, don't specify versions in Firebase dependencies
+    implementation("com.google.firebase:firebase-analytics")
+//    Google Authentication via Firebase
+    implementation("com.google.firebase:firebase-auth:23.0.0")
+
+    // Also add the dependency for the Google Play services library and specify its version
+    implementation("com.google.android.gms:play-services-auth:21.2.0")
+
 
 }
