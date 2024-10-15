@@ -24,10 +24,14 @@ public class WelcomeActivity extends AppCompatActivity {
             return insets;
         });
 
+        //find id of logingBtn from .xml and setOnClickListener to jump to LoginActivity
         findViewById(R.id.getStartedBtn).setOnClickListener(new View.OnClickListener() {
+            //Overriding onClick abstract method
             @Override
             public void onClick(View v) {
+                //Go WelcomeActivity to LoginActivity via Intent class
                 startActivity(new Intent(WelcomeActivity.this,LoginActivity.class));
+                //finish the stack of activity here
                 finish();
             }
         });

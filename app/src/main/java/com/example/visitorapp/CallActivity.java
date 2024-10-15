@@ -1,3 +1,4 @@
+//Call Activity for Video and Audio Conversation
 package com.example.visitorapp;
 
 import android.os.Bundle;

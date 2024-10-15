@@ -8,7 +8,7 @@
     android:background="@color/white"
     tools:context=".LoginActivity">
 
-
+<!-- Shapeable Imageview for displaying the image -->
     <!--    <com.google.android.material.imageview.ShapeableImageView-->
 <!--        android:id="@+id/imageView"-->
 <!--        android:layout_width="100dp"-->
@@ -21,6 +21,7 @@
 <!--        app:layout_constraintStart_toStartOf="parent"-->
 <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
+    <!--    Lottie Animation view for showing the login animation -->
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animatin"
         android:layout_width="150dp"
@@ -34,6 +35,7 @@
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/animation" />
 
+<!--    TextView for displaying static text -->
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -49,6 +51,7 @@
         app:layout_constraintTop_toBottomOf="@+id/animatin"
         app:layout_constraintVertical_bias="0.050000012" />
 
+<!--    LinearLayout with orientation of Horizontal containing 1 TextView and 1 ImageView -->
     <LinearLayout
         android:id="@+id/loginBtn"
         android:layout_width="match_parent"
@@ -64,11 +67,13 @@
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
+<!--        ImageView for image display-->
         <!--        <ImageView-->
         <!--            android:layout_width="25dp"-->
         <!--            android:layout_height="25dp"-->
         <!--            android:src="@drawable/login_user" />-->
 
+<!--        TextView for Static text-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -79,6 +84,7 @@
             android:text="Login With "
             android:textColor="@color/black" />
 
+<!--        ImageView for Google text image-->
         <ImageView
             android:layout_width="40dp"
             android:layout_height="20dp"
@@ -87,19 +93,19 @@
 
     </LinearLayout>
 
+<!--    TextView of App's Terms and Condition -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
         android:fontFamily="@font/roboto"
         android:padding="4dp"
-        android:textAlignment="center"
         android:text="While Pressing Login Button,\n You Agree App's Term And Condition"
+        android:textAlignment="center"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.94" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

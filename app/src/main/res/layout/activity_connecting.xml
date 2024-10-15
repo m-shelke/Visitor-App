@@ -8,6 +8,7 @@
     tools:context=".ConnectingActivity"
     android:background="@drawable/gradient_bg">
 
+<!--    Textview for displaying text label-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,6 +22,7 @@
         app:layout_constraintEnd_toEndOf="@+id/lottieAnimationView"
         app:layout_constraintStart_toStartOf="@+id/lottieAnimationView" />
 
+<!--    Lottie Animation view for showing the animation of kingfisher birds-->
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottieAnimationView"
         android:layout_width="250dp"

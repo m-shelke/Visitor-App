@@ -1,3 +1,4 @@
+//Connecting Activity for waiting the User until finding the match
 package com.example.visitorapp;
 
 import android.os.Bundle;

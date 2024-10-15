@@ -9,13 +9,14 @@ android {
     namespace = "com.example.visitorapp"
     compileSdk = 34
 
+//    Enabling ViewBinding here
     buildFeatures {
         viewBinding = true
     }
 
     defaultConfig {
         applicationId = "com.example.visitorapp"
-        minSdk = 21
+        minSdk = 24
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -59,9 +60,12 @@ dependencies {
 
     // Import the Firebase BoM
     implementation(platform("com.google.firebase:firebase-bom:33.4.0"))
-    // TODO: Add the dependencies for Firebase products you want to use
+
+    // Adding the dependencies for Firebase
+
     // When using the BoM, don't specify versions in Firebase dependencies
     implementation("com.google.firebase:firebase-analytics")
+
 //    Google Authentication via Firebase
     implementation("com.google.firebase:firebase-auth:23.0.0")
 

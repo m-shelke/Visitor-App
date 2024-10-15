@@ -1,3 +1,4 @@
+//MainActivity is the Dashboard of the App User
 package com.example.visitorapp;
 
 import android.content.Intent;
@@ -23,9 +24,12 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        findViewById(R.id.getStartedBtn).setOnClickListener(new View.OnClickListener() {
+        //find id of getStartedBtn from .xml and setOnClickListener to handle finding match partner
+        findViewById(R.id.letsFindBtn).setOnClickListener(new View.OnClickListener() {
+            //Overriding onClick abstract method
             @Override
             public void onClick(View v) {
+                //For now, we just go MainActivity to CallActivity via Intent class
                 startActivity(new Intent(MainActivity.this,CallActivity.class));
             }
         });

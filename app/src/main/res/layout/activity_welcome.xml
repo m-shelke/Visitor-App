@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     tools:context=".WelcomeActivity">
 
-    <!--    <ImageView-->
+<!--    ImageView for App logo-->
+    <!--    <ImageView -->
 <!--        android:id="@+id/imageView2"-->
 <!--        android:layout_width="100dp"-->
 <!--        android:layout_height="100dp"-->
@@ -20,6 +21,7 @@
 <!--        app:layout_constraintTop_toTopOf="parent"-->
 <!--        app:layout_constraintVertical_bias="0.9" />-->
 
+<!--    TextView for app name-->
 <!--    <TextView-->
 <!--        android:id="@+id/textView"-->
 <!--        android:layout_width="match_parent"-->
@@ -34,6 +36,7 @@
 <!--        app:layout_constraintStart_toStartOf="@+id/imageView2"-->
 <!--        app:layout_constraintTop_toBottomOf="@+id/imageView2" />-->
 
+    <!--    TextView for slogan-->
 <!--    <TextView-->
 <!--        android:layout_width="wrap_content"-->
 <!--        android:layout_height="wrap_content"-->
@@ -45,6 +48,7 @@
 <!--        app:layout_constraintStart_toStartOf="@+id/textView"-->
 <!--        app:layout_constraintTop_toBottomOf="@+id/textView" />-->
 
+<!--    ImageView for application logo-->
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="200dp"
@@ -57,6 +61,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+<!--    Material Button for go to the Login Page Activity-->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/getStartedBtn"
         android:layout_width="wrap_content"
