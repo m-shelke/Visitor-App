@@ -1,8 +1,5 @@
 plugins {
     alias(libs.plugins.android.application)
-
-    // Add the Google services Gradle plugin
-    apply { ("com.google.gms.google-services") }
 }
 
 android {
@@ -58,19 +55,27 @@ dependencies {
 
 //    Firebase Realtime Database Dependency
 
+    // Adding the dependencies for Firebase
+
     // Import the Firebase BoM
     implementation(platform("com.google.firebase:firebase-bom:33.4.0"))
-
-    // Adding the dependencies for Firebase
 
     // When using the BoM, don't specify versions in Firebase dependencies
     implementation("com.google.firebase:firebase-analytics")
 
 //    Google Authentication via Firebase
-    implementation("com.google.firebase:firebase-auth:23.0.0")
+    implementation("com.google.firebase:firebase-auth")
+
+//    Firebase firestore dependency
+    implementation("com.google.firebase:firebase-firestore:25.1.0")
+
+    //    Authentication with Credential Manager
 
     // Also add the dependency for the Google Play services library and specify its version
     implementation("com.google.android.gms:play-services-auth:21.2.0")
+    implementation("androidx.credentials:credentials-play-services-auth:1.3.0")
+    implementation("androidx.credentials:credentials-play-services-auth:1.3.0")
+    implementation("com.google.android.libraries.identity.googleid:googleid:1.1.1")
 
 
 }

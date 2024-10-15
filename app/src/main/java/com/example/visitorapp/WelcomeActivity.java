@@ -31,8 +31,6 @@ public class WelcomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Go WelcomeActivity to LoginActivity via Intent class
                 startActivity(new Intent(WelcomeActivity.this,LoginActivity.class));
-                //finish the stack of activity here
-                finish();
             }
         });
     }
