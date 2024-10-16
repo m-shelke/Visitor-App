@@ -1,6 +1,10 @@
+import com.android.tools.r8.internal.id
+
 plugins {
     alias(libs.plugins.android.application)
 }
+apply {plugin ("com.google.gms.google-services")}
+//apply{ plugin ("com.android.application") }
 
 android {
     namespace = "com.example.visitorapp"

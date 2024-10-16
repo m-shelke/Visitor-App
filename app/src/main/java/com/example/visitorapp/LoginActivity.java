@@ -27,6 +27,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import java.util.Objects;
+
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -125,8 +127,9 @@ public class LoginActivity extends AppCompatActivity {
 //                            or
                             FirebaseUser user1 = firebaseAuth.getCurrentUser();
 
-//
-                            Log.e("Profile",user.getPhotoUrl().toString());
+
+                            assert user != null;
+                            Log.e("Profile", Objects.requireNonNull(user.getPhotoUrl()).toString());
                         }
                     }
                 });
