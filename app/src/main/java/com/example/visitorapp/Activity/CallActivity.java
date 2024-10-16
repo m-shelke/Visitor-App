@@ -1,5 +1,5 @@
-//Connecting Activity for waiting the User until finding the match
-package com.example.visitorapp;
+//Call Activity for Video and Audio Conversation
+package com.example.visitorapp.Activity;
 
 import android.os.Bundle;
 
@@ -9,13 +9,15 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class ConnectingActivity extends AppCompatActivity {
+import com.example.visitorapp.R;
+
+public class CallActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_connecting);
+        setContentView(R.layout.activity_call);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);

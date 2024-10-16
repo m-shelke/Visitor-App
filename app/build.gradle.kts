@@ -3,7 +3,10 @@ import com.android.tools.r8.internal.id
 plugins {
     alias(libs.plugins.android.application)
 }
+
+//apply Google Gradle Plugin here
 apply {plugin ("com.google.gms.google-services")}
+
 //apply{ plugin ("com.android.application") }
 
 android {
@@ -21,6 +24,7 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
+        multiDexEnabled = true
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -70,6 +74,9 @@ dependencies {
 //    Google Authentication via Firebase
     implementation("com.google.firebase:firebase-auth")
 
+//    Firebase Realtime Database
+    implementation("com.google.firebase:firebase-database")
+
 //    Firebase firestore dependency
     implementation("com.google.firebase:firebase-firestore:25.1.0")
 
@@ -80,6 +87,11 @@ dependencies {
     implementation("androidx.credentials:credentials-play-services-auth:1.3.0")
     implementation("androidx.credentials:credentials-play-services-auth:1.3.0")
     implementation("com.google.android.libraries.identity.googleid:googleid:1.1.1")
+
+//    Glide Library dependency
+    implementation("com.github.bumptech.glide:glide:4.14.2")
+//     Skip this if you don't want to use integration libraries or configure Glide.
+    annotationProcessor("com.github.bumptech.glide:compiler:4.14.2")
 
 
 }

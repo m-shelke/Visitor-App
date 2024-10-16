@@ -1,11 +1,11 @@
 //Login Activity for Google Sign
-package com.example.visitorapp;
+package com.example.visitorapp.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -15,6 +15,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.visitorapp.Model.UserModel;
+import com.example.visitorapp.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -26,20 +28,25 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.auth.User;
 
 import java.util.Objects;
 
 
 public class LoginActivity extends AppCompatActivity {
 
-    //Enabling GoogleSignInClient for Google ID sign-in
+//    Enabling GoogleSignInClient for Google ID sign-in
     GoogleSignInClient googleSignInClient;
 
-    //store requestCode_SignIn as a 11 in Integer
+//    store requestCode_SignIn as a 11 in Integer
     int requestCode_SignIn = 11;
 
-    //initiating Firebase Authentication
+//    initiating Firebase Authentication
     FirebaseAuth firebaseAuth;
+
+//    initiating Realtime Firebase database
+    FirebaseDatabase firebaseDatabase;
 
 
 
@@ -54,8 +61,16 @@ public class LoginActivity extends AppCompatActivity {
             return insets;
         });
 
-        //getting instance of the Firebase here
+//        getting instance of the Firebase here
         firebaseAuth = FirebaseAuth.getInstance();
+
+        if (firebaseAuth.getCurrentUser() != null){
+//            calling goToNextActivity method
+            goToNextActivity();
+        }
+
+//       getting instance of the RealTime Firebase Database here
+        firebaseDatabase = FirebaseDatabase.getInstance();
 
         //For accessed of the Google Account, we have provide some Data and Tokens to the Google. It can done vie GoogleSignInOption
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -80,28 +95,29 @@ public class LoginActivity extends AppCompatActivity {
                 startActivityForResult(intent,requestCode_SignIn);
 
 
-                //For now, we just go LoginActivity to MainActivity via Intent class
-               // startActivity(new Intent(LoginActivity.this,MainActivity.class));       //commenting starting code, that was for testing purpose
-                //finish the stack of activity here
-               // finish();
+//                For now, we just go LoginActivity to MainActivity via Intent class
+//                startActivity(new Intent(LoginActivity.this,MainActivity.class));       //commenting starting code, that was for testing purpose
+//                finish the stack of activity here
+//                finish();
+
             }
         });
     }
 
-    // (when user chose one of Google Account form the list of Google Account list) From onActivityResult, we get Data of User which he/she clicked on Google Account
+//     (when user chose one of Google Account form the list of Google Account list) From onActivityResult, we get Data of User which he/she clicked on Google Account
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        //if the requestCode from onActivityResult match with startActivityForResult
+//        if the requestCode from onActivityResult match with startActivityForResult
         if (requestCode == requestCode_SignIn){
-            //then run the following task and getting Google SignedIn Account data From getSignInIntent with onActivityResult
+//            then run the following task and getting Google SignedIn Account data From getSignInIntent with onActivityResult
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
 
-            //getting result of the GoogleSignInAccount and store it to "account" variable
+//            getting result of the GoogleSignInAccount and store it to "account" variable
             GoogleSignInAccount account = task.getResult();
 
-            //calling authWithGoogle method here and passing idToken via account.getIdToken
+//            calling authWithGoogle method here and passing idToken via account.getIdToken
             authWithGoogle(account.getIdToken());
 
         }
@@ -122,16 +138,49 @@ public class LoginActivity extends AppCompatActivity {
 //                        if the task is completed, then it Successful otherwise it's failed
                         if (task.isSuccessful()){
                             //and here, we get the actual User.   This
-                            FirebaseUser user = task.getResult().getUser();
+                          //  FirebaseUser user = task.getResult().getUser();
 
-//                            or
+//                            or and getting current user form firebase
                             FirebaseUser user1 = firebaseAuth.getCurrentUser();
 
+                            //Getting user data form firebase and sent it to the UserModel Java class
+                            UserModel firebaseUser = new UserModel(user1.getUid(),user1.getDisplayName(),user1.getPhotoUrl().toString(),"Unkown",500);
 
-                            assert user != null;
-                            Log.e("Profile", Objects.requireNonNull(user.getPhotoUrl()).toString());
+                            firebaseDatabase.getReference()
+                                    .child("profiles")
+//                                    Specific and Unique id of User
+                                    .child(user1.getUid())
+                                    .setValue(firebaseUser).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+//                                            if the task of uploading data to Firebase Realtime database is successful then.....
+                                            if (task.isSuccessful()){
+                                               startActivity(new Intent(LoginActivity.this, MainActivity.class));
+//                                               and finished the all back end stack activity
+                                                finishAffinity();
+                                            }else {
+                                                //In case problem occurred in the Firebase Realtime Database for uploading the data for that Toast message
+                                                Toast.makeText(LoginActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
+
+//                            Getting Google Account Profile Photo Url form the Firebase and Google Server
+                            assert user1 != null;
+                            Log.e("Profile", Objects.requireNonNull(user1.getPhotoUrl()).toString());
+                        }else {
+//                            In case, error occurred then display in logcat
+                            Log.e("Error",task.getException().getLocalizedMessage());
                         }
                     }
                 });
+    }
+
+    //     method for Intent of LoginActivity to MainActivity
+    public void goToNextActivity(){
+//        Go LoginActivity to MainActivity via Intent class
+        startActivity(new Intent(LoginActivity.this,MainActivity.class));
+//        finish stack of the Activity here
+        finish();
     }
 }

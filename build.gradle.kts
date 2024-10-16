@@ -3,7 +3,14 @@ plugins {
     alias(libs.plugins.android.application) apply false
 }
 
+//Google Gradle dependencies. Most imp
 buildscript {
+
+    repositories {
+        google()
+        mavenCentral()
+    }
+
     dependencies {
         classpath ("com.google.gms:google-services:4.4.2")
     }

@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".Activity.MainActivity"
     android:background="@drawable/gradient_bg">
 
 <!--    ImageView for Blur background for the page-->
@@ -21,6 +21,7 @@
         android:id="@+id/imageView2"
         android:layout_width="80dp"
         android:layout_height="80dp"
+        android:padding="5dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:src="@drawable/stranger"
@@ -45,6 +46,7 @@
 
 <!--        TextView for show static text-->
         <TextView
+            android:id="@+id/coinscountTxv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="You Have : 50"
@@ -118,7 +120,7 @@
 
 <!--    Circular Image View for rounded image with some additional tags-->
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profile_image"
+        android:id="@+id/profileImage"
         android:layout_width="110dp"
         android:layout_height="110dp"
         android:src="@drawable/person_profile"
