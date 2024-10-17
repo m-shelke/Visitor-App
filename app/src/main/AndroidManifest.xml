@@ -2,8 +2,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-<!--    Internet Permision is required of Firebase Google SignIn-->
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <!--    Internet Permision is required of Firebase Google SignIn-->
     <uses-permission android:name="android.permission.INTERNET"/>
+<!--    Camera Permission for Video -->
+    <uses-permission android:name="android.permission.CAMERA"/>
+<!--    Audio record or Mics permission-->
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+<!--    for the mute and unmute of the mute Modify Audio setting permission required-->
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
 
     <application
         android:allowBackup="true"

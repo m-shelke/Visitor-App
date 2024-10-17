@@ -1,13 +1,17 @@
 //MainActivity is the Dashboard of the App User
 package com.example.visitorapp.Activity;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -38,6 +42,12 @@ public class MainActivity extends AppCompatActivity {
 //    coins count variable
     long coins = 0;
 
+//    request Code for permission
+    private int requestCode = 1;
+
+//    Get permission for the User and permission are always in String
+    String[] permissionArr = new String[] {Manifest.permission.CAMERA,Manifest.permission.RECORD_AUDIO};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,15 +62,6 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        //find id of getStartedBtn from .xml and setOnClickListener to handle finding match partner
-        findViewById(R.id.letsFindBtn).setOnClickListener(new View.OnClickListener() {
-            //Overriding onClick abstract method
-            @Override
-            public void onClick(View v) {
-                //For now, we just go MainActivity to CallActivity via Intent class
-                startActivity(new Intent(MainActivity.this,CallActivity.class));
-            }
-        });
 
 //        Getting instance of the FirebaseAuth
         firebaseAuth = FirebaseAuth.getInstance();
@@ -105,5 +106,51 @@ public class MainActivity extends AppCompatActivity {
                                 });
 
 
+//        find id of getStartedBtn from .xml and setOnClickListener to handle finding match partner
+        binding.letsFindBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            //Overriding onClick abstract method
+            public void onClick(View v) {
+
+//                if the permission is granted, then .......
+                if (isPermissionGranted()) {
+
+//                if the coins is greater than 5, then show following Toast message
+                    if (coins > 5) {
+//                    if the coins is more than 5, directly jumped to the ConnectingActivity
+                        startActivity(new Intent(MainActivity.this, ConnectingActivity.class));
+
+//                    Toast.makeText(MainActivity.this, " Finding Your Match ", Toast.LENGTH_SHORT).show();
+//                    if the coins is less than 5, suggest to Earn coins by watching Ads
+                    } else {
+                        Toast.makeText(MainActivity.this, "Coins Are Not Enough For Match, Earn Coins Now", Toast.LENGTH_SHORT).show();
+                    }
+//                    or if permission is not granted then ask for permission
+                } else {
+//                    calling askPermission() method here
+                    askPermission();
+                }
+            }
+        });
+
+
+    }
+
+//    fun for requesting the permission form Users
+    public void askPermission(){
+        //request for permission accessed
+        ActivityCompat.requestPermissions(this,permissionArr,requestCode);
+    }
+
+//  fun for  checking is permission granted or not form the device
+    private boolean isPermissionGranted(){
+//       performing to check the permission for each loop
+        for (String permissionArr : permissionArr){
+//            if the permission is not granted then return false
+            if (ActivityCompat.checkSelfPermission(this,permissionArr) !=PackageManager.PERMISSION_GRANTED);
+            return false;
+        }
+//        by default permission is true
+        return true;
     }
 }
