@@ -147,8 +147,10 @@ public class MainActivity extends AppCompatActivity {
 //       performing to check the permission for each loop
         for (String permissionArr : permissionArr){
 //            if the permission is not granted then return false
-            if (ActivityCompat.checkSelfPermission(this,permissionArr) !=PackageManager.PERMISSION_GRANTED);
-            return false;
+            if (ActivityCompat.checkSelfPermission(this,permissionArr) !=PackageManager.PERMISSION_GRANTED){
+                return false;
+            }
+            return true;
         }
 //        by default permission is true
         return true;
