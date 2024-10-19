@@ -42,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
 //    coins count variable
     long coins = 0;
 
+//    instance of the UserModel class
+        UserModel userModel;
+
 //    request Code for permission
     private int requestCode = 1;
 
@@ -83,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
 
 //                                        converting firebase database obj to UserModel.class
-                                        UserModel userModel = snapshot.getValue(UserModel.class);
+                                         userModel = snapshot.getValue(UserModel.class);
 
 //                                        getting coins form UserModel.class
                                         coins = userModel.getCoins();
@@ -118,7 +121,11 @@ public class MainActivity extends AppCompatActivity {
 //                if the coins is greater than 5, then show following Toast message
                     if (coins > 5) {
 //                    if the coins is more than 5, directly jumped to the ConnectingActivity
-                        startActivity(new Intent(MainActivity.this, ConnectingActivity.class));
+                        Intent intent = new Intent(MainActivity.this,ConnectingActivity.class);
+                        intent.putExtra("profile",userModel.getProfile());
+                        startActivity(intent);
+
+//                        startActivity(new Intent(MainActivity.this, ConnectingActivity.class));
 
 //                    Toast.makeText(MainActivity.this, " Finding Your Match ", Toast.LENGTH_SHORT).show();
 //                    if the coins is less than 5, suggest to Earn coins by watching Ads
