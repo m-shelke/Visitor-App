@@ -63,9 +63,9 @@ public class ConnectingActivity extends AppCompatActivity {
         //        Getting unique id of the User form Firebase Database
         String userName = firebaseAuth.getUid();
 
-        firebaseDatabase.getReference()
+        firebaseDatabase.getReference().child("users")
 //                searching from on the basis of child id
-                .orderByChild("users")
+                .orderByChild("status")
 //                if the child id or room id is 0 then its available and limit it to first
                 .equalTo(0).limitToFirst(1)
 //                adding addListenerForSingleValueEvent for the event result
@@ -73,16 +73,65 @@ public class ConnectingActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+//                        Room is available
+
 //                        if the getChildrenCount is less than 1 then room id is available
                         if (snapshot.getChildrenCount() > 0) {
-//                            Room is available
+
+//                            getting the children of Firebase Database
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+
+//                                getting reference of the Firebase Database
+                                firebaseDatabase.getReference()
+//                                      getting  path string of the "users"
+                                        .child("users")
+//                                        fetching it's value from key "users" and value "incoming"
+                                        .child(dataSnapshot.getKey())
+                                        .child("incoming")
+//                                        set value as "userName"
+                                        .setValue(userName);
+
+//                                getting reference of the Firebase Database
+                                firebaseDatabase.getReference()
+//                                      getting  path string of the "users"
+                                        .child("users")
+//                                        fetching it's value from key "users" and value "status"
+                                        .child(dataSnapshot.getKey())
+                                        .child("status")
+//                                        set value 1 for intent CallActivity
+                                        .setValue(1);
+
+
+//                                if status of the child is 1, and passing some data
+                                Intent intent = new Intent(ConnectingActivity.this,CallActivity.class);
+
+//                                getting the value of "incoming" from firebase database
+                                String incoming = dataSnapshot.child("incoming").getValue(String.class);
+//                                getting the value of "createdBy" from firebase database
+                                String createdBy = dataSnapshot.child("createdBy").getValue(String.class);
+//                                Getting isAvailable in boolean true or false value from the Firebase Database
+                                boolean isAvailable = dataSnapshot.child("isAvailable").getValue(Boolean.class);
+
+//                                passing key and value data from ConnectingActivity to CallActivity
+                                intent.putExtra("userName",userName);
+                                intent.putExtra("incoming",incoming);
+                                intent.putExtra("createdBy",createdBy);
+                                intent.putExtra("isAvailable",isAvailable);
+
+//                                starting activity here
+                                startActivity(intent);
+
+                            }
+
                             Log.e("Error", "Available");
+
                         }else {
 //                            Room is not available
 
 //                            instead of creating another class for storing data on firebase, We can used HashMap
 //                            HashMap<String,Object> map = new HashMap<>();
 
+//                            creating room id in firebase database
                             HashMap<String,Object> hashMap = new HashMap<>();
 //                         id of incoming root in firebase database
                             hashMap.put("incoming",userName);
