@@ -5,12 +5,21 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.CallActivity"
-    android:background="@drawable/gradient_bg">
+    android:background="@drawable/gradient_bg"
+    tools:context=".Activity.CallActivity">
 
-<!--    ImageView for call vector -->
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--    ImageView for call vector -->
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/callendBtn"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginBottom="32dp"
@@ -20,52 +29,52 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <!--    ImageView for mute and unmute vector -->
-<!--    <ImageView-->
-<!--        android:id="@+id/imageView5"-->
-<!--        android:layout_width="50dp"-->
-<!--        android:layout_height="40dp"-->
-<!--        android:layout_marginEnd="32dp"-->
-<!--        android:src="@drawable/baseline_mic_24"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/imageView4"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/imageView4"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/imageView4" />-->
+    <!--    <ImageView-->
+    <!--        android:id="@+id/imageView5"-->
+    <!--        android:layout_width="50dp"-->
+    <!--        android:layout_height="40dp"-->
+    <!--        android:layout_marginEnd="32dp"-->
+    <!--        android:src="@drawable/baseline_mic_24"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@+id/imageView4"-->
+    <!--        app:layout_constraintEnd_toStartOf="@+id/imageView4"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/imageView4" />-->
 
 
     <!--    ImageView for start video call vector -->
-<!--    <ImageView-->
-<!--        android:layout_width="50dp"-->
-<!--        android:layout_height="50dp"-->
-<!--        android:layout_marginStart="32dp"-->
-<!--        android:src="@drawable/video"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/imageView4"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/imageView4"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/imageView4" />-->
+    <!--    <ImageView-->
+    <!--        android:layout_width="50dp"-->
+    <!--        android:layout_height="50dp"-->
+    <!--        android:layout_marginStart="32dp"-->
+    <!--        android:src="@drawable/video"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@+id/imageView4"-->
+    <!--        app:layout_constraintStart_toEndOf="@+id/imageView4"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/imageView4" />-->
 
     <!--   Circular ImageView for start video call vector -->
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/videoImage"
+        android:id="@+id/videoBtn"
         android:layout_width="50dp"
         android:layout_height="52dp"
         android:layout_marginStart="32dp"
         android:src="@drawable/outline_videocam_24"
         app:civ_border_color="#FF000000"
         app:civ_border_width="2dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-        app:layout_constraintStart_toEndOf="@+id/imageView4"
-        app:layout_constraintTop_toTopOf="@+id/imageView4" />
+        app:layout_constraintBottom_toBottomOf="@+id/callendBtn"
+        app:layout_constraintStart_toEndOf="@+id/callendBtn"
+        app:layout_constraintTop_toTopOf="@+id/callendBtn" />
 
     <!--   Circular ImageView for start mute and unmute video call vector -->
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/micImageView"
+        android:id="@+id/micBtn"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginEnd="32dp"
         android:src="@drawable/baseline_mic_24"
         app:civ_border_color="#FF000000"
         app:civ_border_width="2dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-        app:layout_constraintEnd_toStartOf="@+id/imageView4"
-        app:layout_constraintTop_toTopOf="@+id/imageView4" />
+        app:layout_constraintBottom_toBottomOf="@+id/callendBtn"
+        app:layout_constraintEnd_toStartOf="@+id/callendBtn"
+        app:layout_constraintTop_toTopOf="@+id/callendBtn" />
 
     <!--   Horizontal LinearLayout for profile pic,name and address of the User-->
     <LinearLayout
@@ -79,7 +88,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-<!--        Circular ImageView for circle shape image with some additional tags-->
+        <!--        Circular ImageView for circle shape image with some additional tags-->
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image"
             android:layout_width="50dp"
@@ -93,33 +102,34 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="20dp"
-            android:layout_gravity="center"
             android:gravity="center"
             android:orientation="vertical">
 
-<!--            Textview for Name of the User-->
+            <!--            Textview for Name of the User-->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_light"
-                android:textStyle="bold"
                 android:text="Ankit Pathak"
                 android:textColor="@color/black"
-                android:textSize="16dp" />
+                android:textSize="16dp"
+                android:textStyle="bold" />
 
             <!--            Textview for Addreass of the User-->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
                 android:fontFamily="@font/roboto_light"
-                android:textSize="11dp"
-                android:text="Akola,Maharashtra" />
+                android:text="Akola,Maharashtra"
+                android:textColor="@color/black"
+                android:textSize="11dp" />
 
         </LinearLayout>
 
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
