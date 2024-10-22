@@ -18,6 +18,8 @@ import com.example.visitorapp.Model.InterfaceJava;
 import com.example.visitorapp.R;
 import com.example.visitorapp.databinding.ActivityCallBinding;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.UUID;
 
@@ -31,6 +33,30 @@ public class CallActivity extends AppCompatActivity {
 
 //    getting unique id of the user form the firebase
     FirebaseAuth firebaseAuth;
+
+//    Getting userName form the "Connecting Activity"
+    String userName = "";
+
+//    Getting other stranger User Name from the Firebase database
+    String strangerUserName = "";
+
+//    checking is peer is connected or not and by default is false
+    boolean isPeerConnected = false;
+
+//    Getting database reference
+    DatabaseReference databaseReference;
+
+//    checking isAudio is audible or not and by default it's true
+    boolean isAudio = true;
+
+//    checking isVideo is visible or not and by default it's also true
+    boolean isVideo = true;
+
+//    Getting the User id or User Name that who is created this stream call
+    String createdBy;
+
+//    checking is page exist or not
+    boolean pageExist = false;
 
 
     @Override
@@ -49,6 +75,26 @@ public class CallActivity extends AppCompatActivity {
 
 //        getting instance of the firebase auth
         firebaseAuth = FirebaseAuth.getInstance();
+
+//        getting instance of the FirebaseDatabaseReference of the firebase database
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("users");
+
+//        getting userName from "Connecting Activity"
+        userName = getIntent().getStringExtra("userName");
+
+//        getting incoming from "Connecting Activity"
+        String incoming = getIntent().getStringExtra("incoming");
+
+//        getting createdBy from "Connecting Activity"
+        createdBy = getIntent().getStringExtra("createdBy");
+
+//        By default strange user name is empty
+        strangerUserName = "";
+
+//        if incoming is equals to "strangerUserName" then set incoming to strangerUserName
+        if (incoming.equalsIgnoreCase(strangerUserName)){
+            strangerUserName = incoming;
+        }
 
 //        storing unique id of the user
 //        uniqueId = firebaseAuth.getUid();
@@ -109,6 +155,22 @@ public class CallActivity extends AppCompatActivity {
     private void initializePeer() {
 //        getting unique id for every user form method called "getUniqueId()"
         uniqueId = getUniqueId();
+
+//        calling "callJavaScriptFunction" function here for running the javaScript function inside the  Android Studio
+        callJavaScriptFunction("javascript:init(\"" + uniqueId + "\"");
+    }
+
+//    creating this function for calling and for the purpose of JavaScript function
+    void callJavaScriptFunction(String function){
+
+//        for the ui clickable event handle
+        binding.webView.post(new Runnable() {
+            @Override
+            public void run() {
+//                Enabling JavaScript Function in the Android Studio
+                binding.webView.evaluateJavascript(function,null);     // resultCallback of the function set as null. we won't it for now
+            }
+        });
     }
 
 
