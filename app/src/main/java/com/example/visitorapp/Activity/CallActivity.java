@@ -101,20 +101,20 @@ public class CallActivity extends AppCompatActivity {
                 super.onPageFinished(view, url);
 
 //                initialing peers here
-              //  initializePeer();
+                initializePeer();
             }
         });
     }
 
-//    private void initializePeer() {
-////        getting unique id for every user form method called "getUniqueId()"
-//        uniqueId = getUniqueId();
-//    }
+    private void initializePeer() {
+//        getting unique id for every user form method called "getUniqueId()"
+        uniqueId = getUniqueId();
+    }
 
 
 //    an "UUID" is a 'Universally Unique Identifier' standardized 128-bit format for a String ID used to Uniquely Identify Information. It's used to uniquely identify the Your Application Bluetooth service
-//    String getUniqueId(){
-//        return UUID.randomUUID().toString();
-//    }
-//
+    String getUniqueId(){
+        return UUID.randomUUID().toString();
+    }
+
 }
