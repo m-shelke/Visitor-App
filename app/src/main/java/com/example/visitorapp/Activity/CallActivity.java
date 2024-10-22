@@ -23,13 +23,13 @@ import java.util.UUID;
 
 public class CallActivity extends AppCompatActivity {
 
-    //    Enabling viewbinding here
+//    Enabling viewbinding here
     ActivityCallBinding binding;
 
-    //    setting unique id of the user from firebase
+//    setting unique id of the user from firebase
     String uniqueId = "";
 
-    //    getting unique id of the user form the firebase
+//    getting unique id of the user form the firebase
     FirebaseAuth firebaseAuth;
 
 
@@ -57,14 +57,14 @@ public class CallActivity extends AppCompatActivity {
 //        uniqueId = getUniqueId();         completely depends on you
     }
 
-    //    setup of WebView Client
+//    setup of WebView Client
     @SuppressLint("SetJavaScriptEnabled")
-    public void setUpWebView() {
+    public void setUpWebView(){
 
 //        setting web view client here
-        binding.webView.setWebChromeClient(new WebChromeClient() {
+        binding.webView.setWebChromeClient(new WebChromeClient(){
 
-            //            sending Audio and Video permission form WebView client to the device
+//            sending Audio and Video permission form WebView client to the device
             @Override
             public void onPermissionRequest(PermissionRequest request) {
                 super.onPermissionRequest(request);
@@ -78,34 +78,33 @@ public class CallActivity extends AppCompatActivity {
 //        setMediaPlaybackRequiresUserGesture it's false
         binding.webView.getSettings().setMediaPlaybackRequiresUserGesture(false);
 //        implementing java interface
-        binding.webView.addJavascriptInterface(new InterfaceJava(this), "Android");
+        binding.webView.addJavascriptInterface(new InterfaceJava(this),"Android");
 
 //        calling loadVideoCall(); method
-        //loadVideoCall();
+        loadVideoCall();
     }
 
+    public void loadVideoCall(){
+//        loading "call.html" file from "assets" folder
+        String filepath = "file:android_assets/call.html";   // Or file explorer address of file   D:\Android Studio Program\Projects\Random\app\src\main\assets
 
-//    public void loadVideoCall(){
-////        loading "call.html" file from "assets" folder
-//        String filepath = "file:android_assets/call.html";   // Or file explorer address of file   D:\Android Studio Program\Projects\Random\app\src\main\assets
-//
-////        and load it to the webview
-//        binding.webView.loadUrl(filepath);
-//
-////       webview client for  initialising peers
-//        binding.webView.setWebViewClient(new WebViewClient(){
-//
-////            onPageFinished for Notify the host application that a page has finished loading. This method is call only for main frame
-////            connecting peers after loading the "call.html"
-//            @Override
-//            public void onPageFinished(WebView view, String url) {
-//                super.onPageFinished(view, url);
-//
-////                initialing peers here
-//                initializePeer();
-//            }
-//        });
-//    }
+//        and load it to the webview
+        binding.webView.loadUrl(filepath);
+
+//       webview client for  initialising peers
+        binding.webView.setWebViewClient(new WebViewClient(){
+
+//            onPageFinished for Notify the host application that a page has finished loading. This method is call only for main frame
+//            connecting peers after loading the "call.html"
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+
+//                initialing peers here
+              //  initializePeer();
+            }
+        });
+    }
 
 //    private void initializePeer() {
 ////        getting unique id for every user form method called "getUniqueId()"
