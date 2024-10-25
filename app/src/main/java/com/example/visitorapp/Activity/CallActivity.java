@@ -3,12 +3,17 @@ package com.example.visitorapp.Activity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
+import android.view.View;
 import android.webkit.PermissionRequest;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -18,8 +23,11 @@ import com.example.visitorapp.Model.InterfaceJava;
 import com.example.visitorapp.R;
 import com.example.visitorapp.databinding.ActivityCallBinding;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.UUID;
 
@@ -76,6 +84,9 @@ public class CallActivity extends AppCompatActivity {
 //        getting instance of the firebase auth
         firebaseAuth = FirebaseAuth.getInstance();
 
+//        storing unique id of the user
+//        uniqueId = firebaseAuth.getUid();
+
 //        getting instance of the FirebaseDatabaseReference of the firebase database
         databaseReference = FirebaseDatabase.getInstance().getReference().child("users");
 
@@ -94,17 +105,62 @@ public class CallActivity extends AppCompatActivity {
 //        if incoming is equals to "strangerUserName" then set incoming to strangerUserName
         if (incoming.equalsIgnoreCase(strangerUserName)){
             strangerUserName = incoming;
+
+//            calling "setUpWebView" method here
+            setUpWebView();
+
+//            handling onClicked event on mic button
+            binding.micBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+//                    setting isAudio to is not Audio
+                    isAudio = !isAudio;
+//                    calling javascript function here to run the javascript function okay
+                    callJavaScriptFunction("javascript:toggleAudio(\""+isAudio+"\")");
+
+//                    if Audio is not play, then show Unmute Audio image
+                    if (isAudio){
+//                        setting unmute audio image to micBtn
+                        binding.micBtn.setImageResource(R.drawable.baseline_mic_24);
+                    }else {
+//                        setting mute image resource to the micBtn
+                        binding.micBtn.setImageResource(R.drawable.ic_launcher_foreground);
+                    }
+
+                }
+            });
+
+//             handling onClicked event on videoBtn button
+            binding.videoBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+//                    setting isVideo to is not Video
+                    isVideo = !isVideo;
+//                    calling javascript function here to run the javascript function okay
+                    callJavaScriptFunction("javascript:toggleVideo(\""+isVideo+"\")");
+
+//                    if Video is not play, then show Un-mute Video image
+                    if (isVideo){
+//                        setting video image to micBtn
+                        binding.videoBtn.setImageResource(R.drawable.outline_videocam_24);
+                    }else {
+//                        setting mute video image resource to the videoBtn
+                        binding.videoBtn.setImageResource(R.drawable.ic_launcher_foreground);
+                    }
+
+                }
+            });
+
         }
 
-//        storing unique id of the user
-//        uniqueId = firebaseAuth.getUid();
 
 //        Orr
-//        uniqueId = getUniqueId();         completely depends on you
+//       uniqueId = getUniqueId();
     }
 
 //    setup of WebView Client
-    @SuppressLint("SetJavaScriptEnabled")
     public void setUpWebView(){
 
 //        setting web view client here
@@ -113,7 +169,7 @@ public class CallActivity extends AppCompatActivity {
 //            sending Audio and Video permission form WebView client to the device
             @Override
             public void onPermissionRequest(PermissionRequest request) {
-                super.onPermissionRequest(request);
+//                super.onPermissionRequest(request);
 //                grating all permission, that was demanding form wetWebclient
                 request.grant(request.getResources());
             }
@@ -157,7 +213,101 @@ public class CallActivity extends AppCompatActivity {
         uniqueId = getUniqueId();
 
 //        calling "callJavaScriptFunction" function here for running the javaScript function inside the  Android Studio
-        callJavaScriptFunction("javascript:init(\"" + uniqueId + "\"");
+        callJavaScriptFunction("javascript:init(\"" + uniqueId + "\")");
+
+//        if the roomId is created by the current user, then get another person user id
+        if (createdBy.equalsIgnoreCase(userName)){
+//            setting another person unique id to connId
+            databaseReference.child(userName).child("connId").setValue(uniqueId);
+
+
+            Log.e("Error",uniqueId );
+
+//            if it's available then, set it to true
+            databaseReference.child(userName).child("isAvailable").setValue(true);
+
+//            Visible controls here and by default it's was Invisible to the User
+            binding.group.setVisibility(View.VISIBLE);
+        }else {
+//            otherwise if the room id is not created by the current user then
+//            Handler for 5 second delay, to check the who is crated this Room Id
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+//                    setting createdBy id to strangerUserName
+                    strangerUserName = createdBy;
+
+                    FirebaseDatabase.getInstance().getReference()
+                            .child("users")
+                            .child(strangerUserName)
+                            .child("connId")
+//                            single Value listener for one time, to check
+                            .addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+//                                    if the "connId" is not null
+                                    if (snapshot.getValue() != null){
+//                                        then sending call request to another connId
+//                                        calling this sendCallRequest(); method
+                                        sendCallRequest();
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+                }
+            },2000);
+        }
+    }
+
+    public void onPeerConnected(){
+//        updating to isPeerConnected = true;
+        isPeerConnected = true;
+    }
+
+//    creating a sendCallRequest(); method for sending the call request to ConnId
+    void sendCallRequest(){
+//        if the Peer is not Connected, then show this Toast message
+        if (!isPeerConnected) {
+            Toast.makeText(this, "You'r Not Connected. Please Check Your Internet Connection.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+//            calling listenConnId(); method here
+            listenConnId();
+
+    }
+
+//    creating listenConnId(); function for listening the connId
+    void listenConnId(){
+
+//        fetching "connId" from the firebase database
+        databaseReference.child(strangerUserName).child("connId").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+//                if the value of snapshot is null then return it
+                if (snapshot.getValue() == null) {
+                    return;
+                }
+//                    setting visibility of the Group of controls as a Visible
+                    binding.group.setVisibility(View.VISIBLE);
+//                getting connId from the firebase database
+                String connId = snapshot.getValue(String.class);
+//                calling javascript function to start the video call
+                callJavaScriptFunction("javascript:startCall(\""+connId+"\")");
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
 //    creating this function for calling and for the purpose of JavaScript function

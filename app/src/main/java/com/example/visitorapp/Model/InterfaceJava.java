@@ -17,8 +17,8 @@ public class InterfaceJava {
 //    onPeerConnected method
     @JavascriptInterface
     public void onPeerConnected(){
-
-
+//        calling onPeerConnected() from callActivity
+        callActivity.onPeerConnected();
     }
 
 

@@ -35,6 +35,8 @@ public class ConnectingActivity extends AppCompatActivity {
     //    initiating firebase database
     FirebaseDatabase firebaseDatabase;
 
+    boolean isOkay = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +79,8 @@ public class ConnectingActivity extends AppCompatActivity {
 
 //                        if the getChildrenCount is less than 1 then room id is available
                         if (snapshot.getChildrenCount() > 0) {
+
+                            isOkay = true;
 
 //                            getting the children of Firebase Database
                             for (DataSnapshot dataSnapshot : snapshot.getChildren()){
@@ -166,6 +170,14 @@ public class ConnectingActivity extends AppCompatActivity {
 
 //                                                                if the child status is 1, then starting intent form ConnectingActivity To CallActivity
                                                                 if (snapshot.child("status").getValue(Integer.class) == 1){
+
+
+
+                                                                    if (isOkay){
+                                                                        return;
+                                                                    }
+
+                                                                    isOkay = true;
 
 //                                                                    if status of the child is 1, and passing some data
                                                                     Intent intent = new Intent(ConnectingActivity.this,CallActivity.class);
