@@ -1,0 +1,24 @@
+html, body{
+    padding: 0;
+    margin: 0;
+}
+
+/* the video, which acquired whole screen */
+.primary-videp{
+
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* the video, which is picture in picture */
+.secondary-videp{
+
+    position: absolute;
+    max-width: 30%;
+    width: 30%;
+    margin: 16px;
+    border-radius: 16px;
+
+}

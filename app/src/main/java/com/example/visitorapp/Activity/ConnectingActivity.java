@@ -23,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class ConnectingActivity extends AppCompatActivity {
 
@@ -56,10 +57,14 @@ public class ConnectingActivity extends AppCompatActivity {
         //        getting instance of the Firebase Database
         firebaseDatabase = FirebaseDatabase.getInstance();
 
+        Intent mainIntent = getIntent();
+
+      String profileUrl1 =  mainIntent.getStringExtra("profile");
+
         String profileUrl = getIntent().getStringExtra("profile");
 
         Glide.with(this)
-                .load(profileUrl)
+                .load(profileUrl1)
                 .into(binding.profileImage);
 
         //        Getting unique id of the User form Firebase Database
@@ -90,7 +95,7 @@ public class ConnectingActivity extends AppCompatActivity {
 //                                      getting  path string of the "users"
                                         .child("users")
 //                                        fetching it's value from key "users" and value "incoming"
-                                        .child(dataSnapshot.getKey())
+                                        .child(Objects.requireNonNull(dataSnapshot.getKey()))
                                         .child("incoming")
 //                                        set value as "userName"
                                         .setValue(userName);
@@ -114,7 +119,7 @@ public class ConnectingActivity extends AppCompatActivity {
 //                                getting the value of "createdBy" from firebase database
                                 String createdBy = dataSnapshot.child("createdBy").getValue(String.class);
 //                                Getting isAvailable in boolean true or false value from the Firebase Database
-                                boolean isAvailable = dataSnapshot.child("isAvailable").getValue(Boolean.class);
+                                boolean isAvailable = Boolean.TRUE.equals(dataSnapshot.child("isAvailable").getValue(Boolean.class));
 
 //                                passing key and value data from ConnectingActivity to CallActivity
                                 intent.putExtra("userName",userName);
@@ -173,9 +178,9 @@ public class ConnectingActivity extends AppCompatActivity {
 
 
 
-                                                                    if (isOkay){
+                                                                    if (isOkay)
                                                                         return;
-                                                                    }
+
 
                                                                     isOkay = true;
 

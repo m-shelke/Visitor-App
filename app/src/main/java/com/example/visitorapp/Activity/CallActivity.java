@@ -2,6 +2,7 @@
 package com.example.visitorapp.Activity;
 
 import android.annotation.SuppressLint;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -64,7 +65,7 @@ public class CallActivity extends AppCompatActivity {
     String createdBy;
 
 //    checking is page exist or not
-    boolean pageExist = false;
+    boolean pageExit = false;
 
 
     @Override
@@ -100,9 +101,10 @@ public class CallActivity extends AppCompatActivity {
         createdBy = getIntent().getStringExtra("createdBy");
 
 //        By default strange user name is empty
-        strangerUserName = "";
+        strangerUserName = incoming;
 
 //        if incoming is equals to "strangerUserName" then set incoming to strangerUserName
+        assert incoming != null;
         if (incoming.equalsIgnoreCase(strangerUserName)){
             strangerUserName = incoming;
 
@@ -149,10 +151,8 @@ public class CallActivity extends AppCompatActivity {
 //                        setting mute video image resource to the videoBtn
                         binding.videoBtn.setImageResource(R.drawable.ic_launcher_foreground);
                     }
-
                 }
             });
-
         }
 
 
@@ -161,6 +161,7 @@ public class CallActivity extends AppCompatActivity {
     }
 
 //    setup of WebView Client
+    @SuppressLint("SetJavaScriptEnabled")
     public void setUpWebView(){
 
 //        setting web view client here
@@ -169,9 +170,13 @@ public class CallActivity extends AppCompatActivity {
 //            sending Audio and Video permission form WebView client to the device
             @Override
             public void onPermissionRequest(PermissionRequest request) {
-//                super.onPermissionRequest(request);
-//                grating all permission, that was demanding form wetWebclient
-                request.grant(request.getResources());
+//               super.onPermissionRequest(request);
+               
+//               if the android version is .........
+               if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+//                   grating all permission, that was demanding form wetWebclient
+                   request.grant(request.getResources());
+               }
             }
         });
 
@@ -188,7 +193,9 @@ public class CallActivity extends AppCompatActivity {
 
     public void loadVideoCall(){
 //        loading "call.html" file from "assets" folder
-        String filepath = "file:android_assets/call.html";   // Or file explorer address of file   D:\Android Studio Program\Projects\Random\app\src\main\assets
+        String filepath = "file:///android_asset/call.html";   // Or file explorer address of file   D:\Android Studio Program\Projects\Random\app\src\main\assets
+
+//        file:android_asset/call.html
 
 //        and load it to the webview
         binding.webView.loadUrl(filepath);
@@ -260,7 +267,7 @@ public class CallActivity extends AppCompatActivity {
                                 }
                             });
                 }
-            },2000);
+            },3000);
         }
     }
 
@@ -291,9 +298,9 @@ public class CallActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
 //                if the value of snapshot is null then return it
-                if (snapshot.getValue() == null) {
+                if (snapshot.getValue() == null)
                     return;
-                }
+
 //                    setting visibility of the Group of controls as a Visible
                     binding.group.setVisibility(View.VISIBLE);
 //                getting connId from the firebase database
