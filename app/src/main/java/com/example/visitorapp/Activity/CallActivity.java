@@ -173,10 +173,8 @@ public class CallActivity extends AppCompatActivity {
 //               super.onPermissionRequest(request);
                
 //               if the android version is .........
-               if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
-//                   grating all permission, that was demanding form wetWebclient
-                   request.grant(request.getResources());
-               }
+                //                   grating all permission, that was demanding form wetWebclient
+                request.grant(request.getResources());
             }
         });
 
@@ -193,7 +191,7 @@ public class CallActivity extends AppCompatActivity {
 
     public void loadVideoCall(){
 //        loading "call.html" file from "assets" folder
-        String filepath = "file:///android_asset/call.html";   // Or file explorer address of file   D:\Android Studio Program\Projects\Random\app\src\main\assets
+        String filepath = "file:android_asset/calll.html";  // Or file explorer address of file   D:\Android Studio Program\Projects\Random\app\src\main\assets
 
 //        file:android_asset/call.html
 
@@ -298,8 +296,9 @@ public class CallActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
 //                if the value of snapshot is null then return it
-                if (snapshot.getValue() == null)
+                if (snapshot.getValue() == null) {
                     return;
+                }
 
 //                    setting visibility of the Group of controls as a Visible
                     binding.group.setVisibility(View.VISIBLE);
