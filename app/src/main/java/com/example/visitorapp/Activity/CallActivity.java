@@ -20,7 +20,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.bumptech.glide.Glide;
 import com.example.visitorapp.Model.InterfaceJava;
+import com.example.visitorapp.Model.UserModel;
 import com.example.visitorapp.R;
 import com.example.visitorapp.databinding.ActivityCallBinding;
 import com.google.firebase.auth.FirebaseAuth;
@@ -101,11 +103,11 @@ public class CallActivity extends AppCompatActivity {
         createdBy = getIntent().getStringExtra("createdBy");
 
 //        By default strange user name is empty
-        strangerUserName = incoming;
-
-//        if incoming is equals to "strangerUserName" then set incoming to strangerUserName
-        assert incoming != null;
-        if (incoming.equalsIgnoreCase(strangerUserName)){
+//        strangerUserName = incoming;
+//
+////        if incoming is equals to "strangerUserName" then set incoming to strangerUserName
+//        assert incoming != null;
+//        if (incoming.equalsIgnoreCase(strangerUserName)){
             strangerUserName = incoming;
 
 //            calling "setUpWebView" method here
@@ -123,7 +125,7 @@ public class CallActivity extends AppCompatActivity {
 
 //                    if Audio is not play, then show Unmute Audio image
                     if (isAudio){
-//                        setting unmute audio image to micBtn
+//                        setting un-mute audio image to micBtn
                         binding.micBtn.setImageResource(R.drawable.microphone_active);
                     }else {
 //                        setting mute image resource to the micBtn
@@ -153,7 +155,16 @@ public class CallActivity extends AppCompatActivity {
                     }
                 }
             });
-        }
+
+//            setOnClickListener for listening the event of callendBtn
+            binding.callendBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+//                    if the callendBtn is clicked then, we finish this activity
+                    finish();
+                }
+            });
+
 
 
 //        Orr
@@ -173,7 +184,7 @@ public class CallActivity extends AppCompatActivity {
 //               super.onPermissionRequest(request);
                
 //               if the android version is .........
-                //                   grating all permission, that was demanding form wetWebclient
+//                grating all permission, that was demanding form wetWebclient
                 request.grant(request.getResources());
             }
         });
@@ -222,6 +233,11 @@ public class CallActivity extends AppCompatActivity {
 
 //        if the roomId is created by the current user, then get another person user id
         if (createdBy.equalsIgnoreCase(userName)){
+
+//            if the page is exit then return here. And go back from here
+            if (pageExit)
+                return;
+
 //            setting another person unique id to connId
             databaseReference.child(userName).child("connId").setValue(uniqueId);
 
@@ -231,8 +247,43 @@ public class CallActivity extends AppCompatActivity {
 //            if it's available then, set it to true
             databaseReference.child(userName).child("isAvailable").setValue(true);
 
+//            setting visibility of the Group of loadingGroup as a GONE
+            binding.loadingGroup.setVisibility(View.GONE);
+
 //            Visible controls here and by default it's was Invisible to the User
             binding.group.setVisibility(View.VISIBLE);
+
+//            setting Profile,User name and City of the Stranger
+            FirebaseDatabase.getInstance().getReference()
+//                    inside the profiles
+                    .child("profiles")
+//                    strangerUserName
+                    .child(strangerUserName)
+//                    addListenerForSingleValueEvent to listen the value that inside in Firebase Database
+                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+//                            getting name,profile and city name form UserModel. And UserModel is obj of Firebase Database
+                            UserModel userModel = snapshot.getValue(UserModel.class);
+
+//                            setting profile image to ImageView via Glide Library
+                            Glide.with(CallActivity.this)
+                                    .load(userModel.getProfile())
+                                    .into(binding.profileImg);
+
+//                            setting profile name to name textview
+                            binding.profileName.setText(userModel.getName());
+//                            setting city name to city textview
+                            binding.cityName.setText(userModel.getCity());
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
         }else {
 //            otherwise if the room id is not created by the current user then
 //            Handler for 5 second delay, to check the who is crated this Room Id
@@ -241,6 +292,39 @@ public class CallActivity extends AppCompatActivity {
                 public void run() {
 //                    setting createdBy id to strangerUserName
                     strangerUserName = createdBy;
+
+//            setting Profile,User name and City of the Stranger
+                    FirebaseDatabase.getInstance().getReference()
+//                    inside the profiles
+                            .child("profiles")
+//                    strangerUserName
+                            .child(strangerUserName)
+//                    addListenerForSingleValueEvent to listen the value that inside in Firebase Database
+                            .addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+//                            getting name,profile and city name form UserModel. And UserModel is obj of Firebase Database
+                                    UserModel userModel = snapshot.getValue(UserModel.class);
+
+//                            setting profile image to ImageView via Glide Library
+                                    Glide.with(CallActivity.this)
+                                            .load(userModel.getProfile())
+                                            .into(binding.profileImg);
+
+//                            setting profile name to name textview
+                                    binding.profileName.setText(userModel.getName());
+//                            setting city name to city textview
+                                    binding.cityName.setText(userModel.getCity());
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+
+
 
                     FirebaseDatabase.getInstance().getReference()
                             .child("users")
@@ -300,6 +384,9 @@ public class CallActivity extends AppCompatActivity {
                     return;
                 }
 
+//                setting visibility of the Group of loadingGroup as a GONE
+                binding.loadingGroup.setVisibility(View.GONE);
+
 //                    setting visibility of the Group of controls as a Visible
                     binding.group.setVisibility(View.VISIBLE);
 //                getting connId from the firebase database
@@ -335,4 +422,17 @@ public class CallActivity extends AppCompatActivity {
         return UUID.randomUUID().toString();
     }
 
+//    calling onDestroy method here
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+//        pageExit is now true
+        pageExit = true;
+//        setting the value of "createdBy" to "null"
+        databaseReference.child(createdBy).setValue(null);
+//        and finish this activity here
+        finish();
+    }
 }

@@ -129,6 +129,8 @@ public class ConnectingActivity extends AppCompatActivity {
 
 //                                starting activity here
                                 startActivity(intent);
+//                                this activity gonna finished here
+                                finish();
 
                             }
 
@@ -196,6 +198,8 @@ public class ConnectingActivity extends AppCompatActivity {
 //                                                                    passing isAvailable 0 or 1 to CallActivity
                                                                     intent.putExtra("isAvailable",snapshot.child("isAvailable").getValue(boolean.class));
                                                                     startActivity(intent);
+//                                                                    this activity will finished here
+                                                                    finish();
                                                                 }
                                                             }
                                                         }
