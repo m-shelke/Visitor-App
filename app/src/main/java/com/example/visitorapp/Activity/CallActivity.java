@@ -124,10 +124,10 @@ public class CallActivity extends AppCompatActivity {
 //                    if Audio is not play, then show Unmute Audio image
                     if (isAudio){
 //                        setting unmute audio image to micBtn
-                        binding.micBtn.setImageResource(R.drawable.baseline_mic_24);
+                        binding.micBtn.setImageResource(R.drawable.microphone_active);
                     }else {
 //                        setting mute image resource to the micBtn
-                        binding.micBtn.setImageResource(R.drawable.ic_launcher_foreground);
+                        binding.micBtn.setImageResource(R.drawable.not_active_microphone);
                     }
 
                 }
@@ -146,10 +146,10 @@ public class CallActivity extends AppCompatActivity {
 //                    if Video is not play, then show Un-mute Video image
                     if (isVideo){
 //                        setting video image to micBtn
-                        binding.videoBtn.setImageResource(R.drawable.outline_videocam_24);
+                        binding.videoBtn.setImageResource(R.drawable.active_video);
                     }else {
 //                        setting mute video image resource to the videoBtn
-                        binding.videoBtn.setImageResource(R.drawable.ic_launcher_foreground);
+                        binding.videoBtn.setImageResource(R.drawable.not_actvie_video);
                     }
                 }
             });

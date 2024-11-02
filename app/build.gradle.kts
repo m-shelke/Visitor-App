@@ -5,7 +5,7 @@ plugins {
 }
 
 //apply Google Gradle Plugin here
-apply {plugin ("com.google.gms.google-services")}
+apply { plugin("com.google.gms.google-services") }
 
 //apply{ plugin ("com.android.application") }
 
@@ -56,10 +56,10 @@ dependencies {
     implementation(kotlin("script-runtime"))
 
 //    Lottie animation Dependency
-    implementation ("com.airbnb.android:lottie:4.0.0")
+    implementation("com.airbnb.android:lottie:4.0.0")
 
 //    Circular imageview Dependency
-    implementation ("de.hdodenhof:circleimageview:3.1.0")
+    implementation("de.hdodenhof:circleimageview:3.1.0")
 
 //    Firebase Realtime Database Dependency
 
@@ -92,6 +92,9 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.14.2")
 //     Skip this if you don't want to use integration libraries or configure Glide.
     annotationProcessor("com.github.bumptech.glide:compiler:4.14.2")
+
+//    GIF dependency
+    implementation("pl.droidsonroids.gif:android-gif-drawable:1.2.29")
 
 
 }
