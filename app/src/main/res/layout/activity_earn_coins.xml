@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.EarnCoinsActivity">
+
+<!-- ImageView for setting the background to the activity-->
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/blur" />
+
+    <!--    ImageView for displaying the App logo-->
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="32dp"
+        android:padding="5dp"
+        android:src="@drawable/stranger"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--  Horizontal LinearLayout for for 1 TextView and 1 ImageView -->
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/grey_bg"
+        android:gravity="center"
+        android:layout_margin="15dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="5dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2">
+
+        <!--        TextView for show static text-->
+        <TextView
+            android:id="@+id/coinscountTxv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Coins : 50"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+        <!--        Imageview for displaying static image-->
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/coin" />
+
+
+    </LinearLayout>
+
+    <!--  Horizontal LinearLayout for coins imageview, 1 coins TextView and 1 Ads imageview  -->
+    <LinearLayout
+        android:id="@+id/Ads1"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/white_rounded_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!--        Imageview for displaying static image of the coins-->
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="20dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/coin" />
+
+        <!--        TextView for show static text of the coins-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text=" 20 Coins"
+            android:textColor="@color/black" />
+
+        <!--        ImageView for displaying the Ads Image-->
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="27dp"
+            android:layout_marginLeft="220dp"
+            android:src="@drawable/ads" />
+
+    </LinearLayout>
+
+    <!--  Horizontal LinearLayout for coins imageview, 1 coins TextView and 1 Ads imageview  -->
+    <LinearLayout
+        android:id="@+id/Ads2"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/white_rounded_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Ads1">
+
+
+        <!--        Imageview for displaying static image of the coins-->
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="20dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/coin" />
+
+        <!--        TextView for show static text of the coins-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text=" 50 Coins"
+            android:textColor="@color/black" />
+
+        <!--        ImageView for displaying the Ads Image-->
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="27dp"
+            android:layout_marginLeft="220dp"
+            android:src="@drawable/ads" />
+
+    </LinearLayout>
+
+    <!--  Horizontal LinearLayout for coins imageview, 1 coins TextView and 1 Ads imageview  -->
+    <LinearLayout
+        android:id="@+id/Ads3"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/white_rounded_bg"
+       app:layout_constraintTop_toBottomOf="@id/Ads2"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center_vertical"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+
+
+
+    <!--        Imageview for displaying static image of the coins-->
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="20dp"
+        android:layout_margin="10dp"
+        android:src="@drawable/coin" />
+
+    <!--        TextView for show static text of the coins-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 120 Coins"
+        android:textColor="@color/black"
+        android:fontFamily="@font/roboto_bold"
+        android:layout_marginLeft="10dp"/>
+
+    <!--        ImageView for displaying the Ads Image-->
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="27dp"
+        android:layout_marginLeft="220dp"
+        android:src="@drawable/ads"/>
+
+    </LinearLayout>
+
+    <!--  Horizontal LinearLayout for coins imageview, 1 coins TextView and 1 Ads imageview  -->
+    <LinearLayout
+        android:id="@+id/Ads4"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="horizontal"
+        android:background="@drawable/white_rounded_bg"
+        app:layout_constraintTop_toBottomOf="@id/Ads3"
+      android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center_vertical"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+
+
+
+    <!--        Imageview for displaying static image of the coins-->
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="20dp"
+        android:layout_margin="10dp"
+        android:src="@drawable/coin" />
+
+    <!--        TextView for show static text of the coins-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 150 Coins"
+        android:textColor="@color/black"
+        android:fontFamily="@font/roboto_bold"
+        android:layout_marginLeft="10dp"/>
+
+    <!--        ImageView for displaying the Ads Image-->
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="27dp"
+        android:layout_marginLeft="220dp"
+        android:src="@drawable/ads"/>
+
+    </LinearLayout>
+
+    <!--  Horizontal LinearLayout for coins imageview, 1 coins TextView and 1 Ads imageview  -->
+    <LinearLayout
+        android:id="@+id/Ads5"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="horizontal"
+        android:background="@drawable/white_rounded_bg"
+        app:layout_constraintTop_toBottomOf="@id/Ads4"
+       android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center_vertical"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+
+    <!--        Imageview for displaying static image of the coins-->
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="20dp"
+        android:layout_margin="10dp"
+        android:src="@drawable/coin" />
+
+    <!--        TextView for show static text of the coins-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="200 Coins"
+        android:textColor="@color/black"
+        android:fontFamily="@font/roboto_bold"
+        android:layout_marginLeft="10dp"/>
+
+    <!--        ImageView for displaying the Ads Image-->
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="27dp"
+        android:layout_marginLeft="220dp"
+        android:src="@drawable/ads"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
