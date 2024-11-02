@@ -120,6 +120,15 @@ public class MainActivity extends AppCompatActivity {
 
 //                if the coins is greater than 5, then show following Toast message
                     if (coins > 5) {
+//                    for each call, user need 5 coins in exchange of the streaming. So that was deducted here
+                        coins = coins-5;
+//                      update deducted value of the coins inside Firebase Database
+                        firebaseDatabase.getReference()
+                                .child("profiles")
+                                .child(currentUser.getUid())
+                                .child("coins")
+                                .setValue(coins);
+
 //                    if the coins is more than 5, directly jumped to the ConnectingActivity
                         Intent intent = new Intent(MainActivity.this,ConnectingActivity.class);
                         intent.putExtra("profile",userModel.getProfile());
