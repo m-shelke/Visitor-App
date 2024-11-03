@@ -28,6 +28,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.auth.User;
 
+import io.github.rupinderjeet.kprogresshud.KProgressHUD;
+
 public class MainActivity extends AppCompatActivity {
 
 //    Enabling ViewBinding here
@@ -47,6 +49,10 @@ public class MainActivity extends AppCompatActivity {
 
 //    request Code for permission
     private int requestCode = 1;
+
+//    Initiating KProgressHUD
+    KProgressHUD kProgressHUD;
+
 
 //    Get permission for the User and permission are always in String
     String[] permissionArr = new String[] {Manifest.permission.CAMERA,Manifest.permission.RECORD_AUDIO};
@@ -75,6 +81,16 @@ public class MainActivity extends AppCompatActivity {
 //        Getting current User form firebase database
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
 
+//        setting KProgressHUD to until MainActivity UI is loaded
+        kProgressHUD = KProgressHUD.create(MainActivity.this)
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setDetailsLabel("Loading Your Assets")
+                .setCancellable(true)
+                        .setDimAmount(0.7f)
+                                .setAnimationSpeed(1)
+                                        .setLabel("Please Wait")
+                                                .show();
+
 //        getting the reference of the firebase database
         firebaseDatabase.getReference()
                 .child("profiles")
@@ -84,6 +100,9 @@ public class MainActivity extends AppCompatActivity {
                                 .addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+//                                        dismissing KProgress here
+                                        kProgressHUD.dismiss();
 
 //                                        converting firebase database obj to UserModel.class
                                          userModel = snapshot.getValue(UserModel.class);
@@ -146,6 +165,15 @@ public class MainActivity extends AppCompatActivity {
 //                    calling askPermission() method here
                     askPermission();
                 }
+            }
+        });
+
+//        setOnClickListener for handling the clicked event of adslinearLayout
+        binding.adslinearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                start EarnCoinsActivity.class on adslinearLayout clicked
+                startActivity(new Intent(MainActivity.this,EarnCoinsActivity.class));
             }
         });
 

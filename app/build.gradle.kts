@@ -96,5 +96,8 @@ dependencies {
 //    GIF dependency
     implementation("pl.droidsonroids.gif:android-gif-drawable:1.2.29")
 
+//    KProgressHUD Dependency
+    implementation ("io.github.rupinderjeet:kprogresshud:1.0.0")
+
 
 }
