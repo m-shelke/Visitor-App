@@ -99,5 +99,8 @@ dependencies {
 //    KProgressHUD Dependency
     implementation ("io.github.rupinderjeet:kprogresshud:1.0.0")
 
+//    Google AdMob Dependency
+    implementation("com.google.android.gms:play-services-ads:23.3.0")
+
 
 }

@@ -102,6 +102,7 @@
 
         <!--        ImageView for displaying the Ads Image-->
         <ImageView
+            android:id="@+id/adsVideo1"
             android:layout_width="30dp"
             android:layout_height="27dp"
             android:layout_marginLeft="220dp"
