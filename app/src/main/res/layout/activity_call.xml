@@ -14,26 +14,27 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/white"
         app:layout_constraintTop_toTopOf="parent" />
 
     <!--    Displaying blur image instill call get connect-->
-    <ImageView
-        android:id="@+id/connectingBlurImg"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/blur" />
+<!--    <ImageView-->
+<!--        android:id="@+id/connectingBlurImg"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:scaleType="centerCrop"-->
+<!--        android:src="@drawable/blur" />-->
+
     <!-- GIF for loading the progress of the connecting-->
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/loading"
         android:layout_width="150dp"
-        android:layout_height="120dp"
-        android:layout_marginEnd="32dp"
+        android:layout_height="150dp"
         android:src="@drawable/loading"
-        app:layout_constraintBottom_toBottomOf="@id/connectingBlurImg"
-        app:layout_constraintEnd_toEndOf="@id/connectingBlurImg"
-        app:layout_constraintStart_toStartOf="@id/connectingBlurImg"
-        app:layout_constraintTop_toTopOf="@id/connectingBlurImg" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 
     <pl.droidsonroids.gif.GifImageView
@@ -133,8 +134,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="15dp"
-        android:background="@drawable/name_bg"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/white_rounded_bg"
         android:orientation="horizontal"
         android:padding="5dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -148,7 +149,7 @@
             android:layout_marginLeft="1dp"
             android:src="@drawable/person"
             app:civ_border_color="#FF000000"
-            app:civ_border_width="2dp" />
+            app:civ_border_width="1dp" />
 
         <!--   Vertical LinearLayout for name and address of the User-->
         <LinearLayout
@@ -179,7 +180,7 @@
                 android:fontFamily="@font/roboto_light"
                 android:text="Akola,Maharashtra"
                 android:textColor="@color/black"
-                android:textSize="11dp" />
+                android:textSize="12dp" />
 
         </LinearLayout>
 
@@ -191,12 +192,5 @@
         android:layout_height="wrap_content"
         android:visibility="invisible"
         app:constraint_referenced_ids="callendBtn,videoBtn,micBtn" />
-
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/loadingGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:constraint_referenced_ids="connectingBlurImg,loading" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

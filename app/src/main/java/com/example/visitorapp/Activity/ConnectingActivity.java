@@ -63,9 +63,9 @@ public class ConnectingActivity extends AppCompatActivity {
 
         String profileUrl = getIntent().getStringExtra("profile");
 
-        Glide.with(this)
-                .load(profileUrl1)
-                .into(binding.profileImage);
+//        Glide.with(this)
+//                .load(profileUrl1)
+//                .into(binding.profileImage);
 
         //        Getting unique id of the User form Firebase Database
         String userName = firebaseAuth.getUid();
