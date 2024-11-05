@@ -128,6 +128,14 @@
         app:layout_constraintEnd_toStartOf="@+id/callendBtn"
         app:layout_constraintTop_toTopOf="@+id/callendBtn" />
 
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/testBtn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="32dp"
+        android:src="@drawable/microphone_active"/>
+
+
 
     <!--   Horizontal LinearLayout for profile pic,name and address of the User-->
     <LinearLayout

@@ -102,5 +102,8 @@ dependencies {
 //    Google AdMob Dependency
     implementation("com.google.android.gms:play-services-ads:23.3.0")
 
+//    Check Kotlin Version Compatibility
+    implementation ("org.jetbrains.kotlin:kotlin-script-runtime:2.0.21")
+
 
 }

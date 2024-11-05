@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.webkit.PermissionRequest;
+import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -32,6 +33,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class CallActivity extends AppCompatActivity {
@@ -82,6 +87,13 @@ public class CallActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        binding.testBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callJavaScriptFunction1("javascript:getAudioOutput()");
+            }
         });
 
 //        getting instance of the firebase auth
@@ -416,8 +428,60 @@ public class CallActivity extends AppCompatActivity {
         });
     }
 
+    void callJavaScriptFunction1(final String function) {
+        // Ensure the WebView is initialized properly
+        if (binding.webView != null && binding.webView.getUrl() != null) {
+            binding.webView.post(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        // Log the JavaScript function for debugging purposes
+                        Log.d("JS Function", "Evaluating: " + function);
 
-//    an "UUID" is a 'Universally Unique Identifier' standardized 128-bit format for a String ID used to Uniquely Identify Information. It's used to uniquely identify the Your Application Bluetooth service
+                        // Execute JavaScript and get the result via callback
+                        binding.webView.evaluateJavascript(function, new ValueCallback<String>() {
+                            @Override
+                            public void onReceiveValue(String value) {
+                                // The value is the result returned from the JavaScript function
+                                Log.d("JS Result", value);
+
+                                // Now, you can process the result data here
+                                display(value);
+                            }
+                        });
+                    } catch (Exception e) {
+                        // Handle any errors that might occur during JavaScript execution
+                        Log.e("WebViewError", "Error evaluating JavaScript: " + e.getMessage());
+                    }
+                }
+            });
+        } else {
+            // Handle case where WebView is not initialized or URL is null
+            Log.e("WebViewError", "WebView is not initialized or URL is null.");
+        }
+    }
+
+    void display(String result) {
+        try {
+            // If the result is JSON data, parse it using JSONObject
+            JSONObject jsonResult = new JSONObject(result);
+
+            JSONArray name = jsonResult.getJSONArray("name");
+            for (int i=0;i<name.length();i++){
+                Log.i("AudioOutPutDevices",name.getString(i));
+            }
+
+            // Do something with the data
+//            Log.d("JavaScript Data", "Name: " + name + ", Age: " + age);
+        } catch (Exception e) {
+            Log.e("JavaScript Data Error", "Error parsing JSON: " + e.getMessage());
+        }
+    }
+
+
+
+
+    //    an "UUID" is a 'Universally Unique Identifier' standardized 128-bit format for a String ID used to Uniquely Identify Information. It's used to uniquely identify the Your Application Bluetooth service
     String getUniqueId(){
         return UUID.randomUUID().toString();
     }
