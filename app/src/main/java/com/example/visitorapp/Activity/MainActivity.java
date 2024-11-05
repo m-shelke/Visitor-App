@@ -4,6 +4,7 @@ package com.example.visitorapp.Activity;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -56,6 +58,11 @@ public class MainActivity extends AppCompatActivity {
 //    Initiating KProgressHUD
     KProgressHUD kProgressHUD;
 
+//    Initiating AnimationDrawable here
+    AnimationDrawable animationDrawable;
+//   Initiate ConstraintLayout here
+    ConstraintLayout constraintLayout;
+
 
 //    Get permission for the User and permission are always in String
     String[] permissionArr = new String[] {Manifest.permission.CAMERA,Manifest.permission.RECORD_AUDIO};
@@ -73,6 +80,14 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+//        finding main and root layout, that we want to set animated background
+//        constraintLayout = findViewById(R.id.main);
+
+//        animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
+//        animationDrawable.setEnterFadeDuration(2500);
+//        animationDrawable.setExitFadeDuration(5000);
+//        animationDrawable.start();
 
 //         initializing MobileAds here
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
@@ -149,9 +164,9 @@ public class MainActivity extends AppCompatActivity {
                 if (isPermissionGranted()) {
 
 //                if the coins is greater than 5, then show following Toast message
-                    if (coins > 5) {
+                    if (coins > 200) {
 //                    for each call, user need 5 coins in exchange of the streaming. So that was deducted here
-                        coins = coins-5;
+                        coins = coins-200;
 //                      update deducted value of the coins inside Firebase Database
                         firebaseDatabase.getReference()
                                 .child("profiles")
@@ -169,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
 //                    Toast.makeText(MainActivity.this, " Finding Your Match ", Toast.LENGTH_SHORT).show();
 //                    if the coins is less than 5, suggest to Earn coins by watching Ads
                     } else {
-                        Toast.makeText(MainActivity.this, "Coins Are Not Enough For Match, Earn Coins Now", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Coins Shortage..!!", Toast.LENGTH_SHORT).show();
                     }
 //                    or if permission is not granted then ask for permission
                 } else {

@@ -79,7 +79,7 @@ public class EarnCoinsActivity extends AppCompatActivity {
 //                                        getting value of the coins from the Firebase Database
                                         coins = snapshot.getValue(Integer.class);
 //                                        setting that current user coins value to coinscountTxv (.xml)
-                                        binding.coinscountTxv.setText(String.valueOf(coins));
+                                        binding.coinscountTxv.setText(String.valueOf(" Currently You Owned : " +coins));
 
                                     }
 
@@ -114,7 +114,7 @@ public class EarnCoinsActivity extends AppCompatActivity {
                                     .setValue(coins);
 
 //                            changing icon of adsVideo1 imageview after completion of Watching Ads
-                            binding.adsVideo1.setImageResource(R.drawable.coinbox);
+                            binding.adsVideo1.setImageResource(R.drawable.double_check);
 //                              log for message in LogCat
                             Log.d("TAG", "The user earned the reward.");
 
@@ -154,7 +154,7 @@ public class EarnCoinsActivity extends AppCompatActivity {
                                     .setValue(coins);
 
 //                            changing icon of adsVideo1 imageview after completion of Watching Ads
-                            binding.adsVideo2.setImageResource(R.drawable.coinbox);
+                            binding.adsVideo2.setImageResource(R.drawable.double_check);
 //                              log for message in LogCat
                             Log.d("TAG", "The user earned the reward.");
 
@@ -194,7 +194,7 @@ public class EarnCoinsActivity extends AppCompatActivity {
                                     .setValue(coins);
 
 //                            changing icon of adsVideo1 imageview after completion of Watching Ads
-                            binding.adsVideo3.setImageResource(R.drawable.coinbox);
+                            binding.adsVideo3.setImageResource(R.drawable.double_check);
 //                              log for message in LogCat
                             Log.d("TAG", "The user earned the reward.");
 
@@ -234,7 +234,7 @@ public class EarnCoinsActivity extends AppCompatActivity {
                                     .setValue(coins);
 
 //                            changing icon of adsVideo1 imageview after completion of Watching Ads
-                            binding.adsVideo4.setImageResource(R.drawable.coinbox);
+                            binding.adsVideo4.setImageResource(R.drawable.double_check);
 //                              log for message in LogCat
                             Log.d("TAG", "The user earned the reward.");
 
@@ -274,7 +274,7 @@ public class EarnCoinsActivity extends AppCompatActivity {
                                     .setValue(coins);
 
 //                            changing icon of adsVideo1 imageview after completion of Watching Ads
-                            binding.adsVideo5.setImageResource(R.drawable.coinbox);
+                            binding.adsVideo5.setImageResource(R.drawable.double_check);
 //                              log for message in LogCat
                             Log.d("TAG", "The user earned the reward.");
 

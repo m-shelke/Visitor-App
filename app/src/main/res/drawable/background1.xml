@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--    background1 for activity_main.xml animated background-->
+    <gradient android:angle="225"
+        android:startColor="#FFF59D"
+        android:endColor="#CE93D8"
+        android:gradientRadius="10dp"
+        android:type="linear"
+        android:useLevel="false"/>
+
+</shape>

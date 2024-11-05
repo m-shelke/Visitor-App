@@ -33,7 +33,7 @@
         android:layout_width="180dp"
         android:layout_height="180dp"
         android:layout_marginEnd="32dp"
-        android:src="@drawable/ads"
+        android:src="@drawable/advertising"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -48,10 +48,9 @@
         android:layout_margin="15dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/grey_bg"
-        android:gravity="center"
-        android:paddingLeft="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
         android:paddingTop="5dp"
-        android:paddingRight="10dp"
         android:paddingBottom="5dp"
         app:layout_constraintEnd_toEndOf="@+id/adsGIF"
         app:layout_constraintStart_toStartOf="@+id/adsGIF"
@@ -64,12 +63,8 @@
             android:layout_height="wrap_content"
             android:text="Your Coins : 50"
             android:textAlignment="center"
-            android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageView2" />
+            android:textStyle="bold"/>
 
         <!--        Imageview for displaying static image-->
         <ImageView

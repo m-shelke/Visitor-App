@@ -248,7 +248,7 @@ public class CallActivity extends AppCompatActivity {
             databaseReference.child(userName).child("isAvailable").setValue(true);
 
 //            setting visibility of the Group of loadingGroup as a GONE
-            binding.loadingGroup.setVisibility(View.GONE);
+            binding.loading.setVisibility(View.GONE);
 
 //            Visible controls here and by default it's was Invisible to the User
             binding.group.setVisibility(View.VISIBLE);
@@ -385,7 +385,7 @@ public class CallActivity extends AppCompatActivity {
                 }
 
 //                setting visibility of the Group of loadingGroup as a GONE
-                binding.loadingGroup.setVisibility(View.GONE);
+                binding.loading.setVisibility(View.GONE);
 
 //                    setting visibility of the Group of controls as a Visible
                     binding.group.setVisibility(View.VISIBLE);
