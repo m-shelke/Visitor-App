@@ -59,9 +59,9 @@ public class ConnectingActivity extends AppCompatActivity {
 
         Intent mainIntent = getIntent();
 
-      String profileUrl1 =  mainIntent.getStringExtra("profile");
+//      String profileUrl1 =  mainIntent.getStringExtra("profile");
 
-        String profileUrl = getIntent().getStringExtra("profile");
+//        String profileUrl = getIntent().getStringExtra("profile");
 
 //        Glide.with(this)
 //                .load(profileUrl1)

@@ -89,12 +89,7 @@ public class CallActivity extends AppCompatActivity {
             return insets;
         });
 
-        binding.testBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                callJavaScriptFunction1("javascript:getAudioOutput()");
-            }
-        });
+
 
 //        getting instance of the firebase auth
         firebaseAuth = FirebaseAuth.getInstance();
@@ -361,7 +356,7 @@ public class CallActivity extends AppCompatActivity {
                                 }
                             });
                 }
-            },3000);
+            },1000);
         }
     }
 
