@@ -130,6 +130,9 @@ public class MainActivity extends AppCompatActivity {
 //                                        dismissing KProgress here
                                         kProgressHUD.dismiss();
 
+//                                        setting visibility of the loadingImg to View.GONE
+                                        binding.loadingImg.setVisibility(View.GONE);
+
 //                                        converting firebase database obj to UserModel.class
                                          userModel = snapshot.getValue(UserModel.class);
 

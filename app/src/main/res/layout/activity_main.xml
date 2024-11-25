@@ -8,13 +8,16 @@
     tools:context=".Activity.MainActivity"
     android:background="@drawable/gradient_bg">
 
-<!--    ImageView for Blur background for the page-->
-<!--    <ImageView-->
-<!--        android:id="@+id/imageView3"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:scaleType="centerCrop"-->
-<!--        android:src="@drawable/blur" />-->
+<!--    ImageView for black background for MainActivity-->
+    <ImageView
+        android:id="@+id/loadingImg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:visibility="visible"
+        android:background="@color/black"
+        android:backgroundTint="@color/black"
+        android:src="@color/black" />
 
     <!--    ImageView for Blur background for the displaying App logo on side corner -->
     <ImageView
