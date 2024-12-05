@@ -158,10 +158,10 @@ public class MainActivity extends AppCompatActivity {
 
 
 //        find id of getStartedBtn from .xml and setOnClickListener to handle finding match partner
-        binding.letsFindBtn.setOnClickListener(new View.OnClickListener() {
+        binding.letsFindBtn.setOnLongClickListener(new View.OnLongClickListener(){
             @Override
             //Overriding onClick abstract method
-            public void onClick(View v) {
+            public boolean onLongClick(View v) {
 
 //                if the permission is granted, then .......
                 if (isPermissionGranted()) {
@@ -194,6 +194,8 @@ public class MainActivity extends AppCompatActivity {
 //                    calling askPermission() method here
                     askPermission();
                 }
+
+                return true;
             }
         });
 

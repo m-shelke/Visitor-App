@@ -128,12 +128,12 @@
         app:layout_constraintEnd_toStartOf="@+id/callendBtn"
         app:layout_constraintTop_toTopOf="@+id/callendBtn" />
 
-    <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/testBtn"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="32dp"
-        android:src="@drawable/microphone_active"/>
+<!--    <pl.droidsonroids.gif.GifImageView-->
+<!--        android:id="@+id/testBtn"-->
+<!--        android:layout_width="50dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_marginEnd="32dp"-->
+<!--        android:src="@drawable/microphone_active"/>-->
 
 
 
@@ -164,8 +164,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="20dp"
             android:gravity="center"
             android:orientation="vertical">
 

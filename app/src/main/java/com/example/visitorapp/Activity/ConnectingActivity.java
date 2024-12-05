@@ -57,7 +57,7 @@ public class ConnectingActivity extends AppCompatActivity {
         //        getting instance of the Firebase Database
         firebaseDatabase = FirebaseDatabase.getInstance();
 
-        Intent mainIntent = getIntent();
+     //   Intent mainIntent = getIntent();
 
 //      String profileUrl1 =  mainIntent.getStringExtra("profile");
 
@@ -83,9 +83,9 @@ public class ConnectingActivity extends AppCompatActivity {
 //                        Room is available
 
 //                        if the getChildrenCount is less than 1 then room id is available
-                        if (snapshot.getChildrenCount() > 0) {
+                        if (snapshot.getChildrenCount() >= 0) {
 
-                            isOkay = true;
+
 
 //                            getting the children of Firebase Database
                             for (DataSnapshot dataSnapshot : snapshot.getChildren()){
@@ -110,9 +110,9 @@ public class ConnectingActivity extends AppCompatActivity {
 //                                        set value 1 for intent CallActivity
                                         .setValue(1);
 
+                                isOkay = true;
 
-//                                if status of the child is 1, and passing some data
-                                Intent intent = new Intent(ConnectingActivity.this,CallActivity.class);
+
 
 //                                getting the value of "incoming" from firebase database
                                 String incoming = dataSnapshot.child("incoming").getValue(String.class);
@@ -120,6 +120,10 @@ public class ConnectingActivity extends AppCompatActivity {
                                 String createdBy = dataSnapshot.child("createdBy").getValue(String.class);
 //                                Getting isAvailable in boolean true or false value from the Firebase Database
                                 boolean isAvailable = Boolean.TRUE.equals(dataSnapshot.child("isAvailable").getValue(Boolean.class));
+
+
+//                                if status of the child is 1, and passing some data
+                                Intent intent = new Intent(ConnectingActivity.this,CallActivity.class);
 
 //                                passing key and value data from ConnectingActivity to CallActivity
                                 intent.putExtra("userName",userName);

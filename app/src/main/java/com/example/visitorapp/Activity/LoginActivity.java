@@ -109,8 +109,11 @@ public class LoginActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+//        and if the resultCode is not null, checking that
+        if (resultCode == RESULT_OK){
+
 //        if the requestCode from onActivityResult match with startActivityForResult
-        if (requestCode == requestCode_SignIn){
+        if (requestCode == requestCode_SignIn) {
 //            then run the following task and getting Google SignedIn Account data From getSignInIntent with onActivityResult
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
 
@@ -119,7 +122,7 @@ public class LoginActivity extends AppCompatActivity {
 
 //            calling authWithGoogle method here and passing idToken via account.getIdToken
             authWithGoogle(account.getIdToken());
-
+        }
         }
     }
 
