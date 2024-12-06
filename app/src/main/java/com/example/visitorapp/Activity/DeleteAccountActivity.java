@@ -79,7 +79,9 @@ public class DeleteAccountActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                onBackPressed();                     /////////////////////////////
+              binding.reportImgBtn.setVisibility(View.INVISIBLE);
+              binding.helperText.setVisibility(View.VISIBLE);
+
             }
         });
 

@@ -11,12 +11,9 @@
     <RelativeLayout
         android:id="@+id/toolbarRL"
         android:layout_width="match_parent"
-        android:layout_height="55dp">
+        android:layout_height="60dp">
 
         <!-- ImageView: click to go back-->
-
-        <!-- TextViw-To show toolbar title -->
-
         <ImageButton
             android:id="@+id/reportImgBtn"
             android:layout_width="wrap_content"
@@ -30,16 +27,30 @@
             android:padding="10dp"
             android:src="@drawable/baseline_report_problem_24" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/toolbarTitleTv"-->
-<!--            style="@style/TextAppearance.MaterialComponents.Body1"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Delete Account"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textStyle="bold" />-->
+        <!-- TextViw-To show toolbar title -->
 
         <!-- View: To make Toolbar look separate from other UI-->
+
+        <TextView
+            android:id="@+id/helper_text"
+            style="@style/TextAppearance.MaterialComponents.Body1"
+            android:layout_width="275dp"
+            android:layout_height="34dp"
+            android:layout_alignStart="@+id/reportImgBtn"
+            android:layout_alignTop="@+id/reportImgBtn"
+            android:layout_alignEnd="@+id/reportImgBtn"
+            android:layout_alignParentBottom="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="-204dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="-17dp"
+            android:layout_marginBottom="-14dp"
+            android:text="Please LogOut And Login Again..!!"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -52,6 +63,7 @@
         android:layout_below="@id/toolbarRL"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
         android:padding="10dp">
 
         <!-- ShapeableImageView: Just to show a static image (drawable.account) from drawable-->
