@@ -221,39 +221,60 @@
         app:layout_constraintStart_toStartOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
 
+
+
+
+
+    <!--    Button for referring the app, to others-->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/refferedBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/grey"
+        android:text="Referred App"
+        app:cornerRadius="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintStart_toStartOf="@id/logOutBtn"
+        app:layout_constraintEnd_toEndOf="@id/logOutBtn"
+        android:elevation="15dp"
+        app:icon="@drawable/baseline_send_24"
+        app:layout_constraintBottom_toTopOf="@+id/logOutBtn" />
+
     <!--MaterialButton: to logout from account-->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/logOutBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/grey"
         android:foreground="?selectableItemBackground"
         android:text="LogOut"
+        android:elevation="15dp"
         app:cornerRadius="8dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:backgroundTint="@color/grey"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintStart_toStartOf="@id/deleteAccountBtn"
+        app:layout_constraintEnd_toEndOf="@id/deleteAccountBtn"
         app:icon="@drawable/baseline_directions_run_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/letsFindBtn" />
+        app:layout_constraintBottom_toTopOf="@+id/deleteAccountBtn" />
 
     <!--MaterialButton: to Deletee the Account-->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/deleteAccountBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/logOutBtn"
-        android:clickable="true"
-        android:focusable="true"
-        android:foreground="?selectableItemBackground"
-        app:cornerRadius="8dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginLeft="30dp"
         android:backgroundTint="@color/grey"
-        app:layout_constraintTop_toBottomOf="@id/logOutBtn"
-        app:layout_constraintStart_toStartOf="@id/logOutBtn"
-        app:layout_constraintEnd_toEndOf="@id/logOutBtn"
+        android:foreground="?selectableItemBackground"
         android:text="Delete Account"
-        app:icon="@drawable/baseline_delete_24"/>
+        app:cornerRadius="8dp"
+        android:elevation="15dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="16sp"
+        app:icon="@drawable/baseline_delete_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

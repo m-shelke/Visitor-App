@@ -172,6 +172,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        binding.refferedBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_TEXT,"Thank You....,com.example.visitorapp.Activity");
+                startActivity(Intent.createChooser(intent,"Thank You For Efforts.."));
+            }
+        });
+
+
 
         //handle logoutBtn click, logout user and start MainActivity
         binding.logOutBtn.setOnClickListener(new View.OnClickListener() {
