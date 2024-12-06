@@ -75,10 +75,11 @@ public class DeleteAccountActivity extends AppCompatActivity {
         currentUser = firebaseAuth.getCurrentUser();
 
         //Handle toolbarBackBtn back click, to go back
-        binding.toolbarBackBtn.setOnClickListener(new View.OnClickListener() {
+        binding.reportImgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onBackPressed();
+
+                onBackPressed();                     /////////////////////////////
             }
         });
 
