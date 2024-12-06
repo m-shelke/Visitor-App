@@ -130,6 +130,7 @@
         android:src="@drawable/person"
         app:civ_border_color="#FF000000"
         app:civ_border_width="2dp"
+        style=""
         app:layout_constraintBottom_toBottomOf="@+id/lottieAnimationView"
         app:layout_constraintEnd_toEndOf="@+id/lottieAnimationView"
         app:layout_constraintStart_toStartOf="@+id/lottieAnimationView"
@@ -140,7 +141,6 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:fontFamily="@font/roboto_bold"
         android:text=" "
         android:textColor="@color/grey"
@@ -154,32 +154,32 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:gravity="center"
-        android:text="Having Fun With Stranger, \n Is Best Way To Count Time "
+        android:layout_marginTop="30dp"
+        android:text="Strangers..\n Sometimes Can Makes Things Happen To You..!!"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="15dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/lottieAnimationView"
         app:layout_constraintStart_toStartOf="@+id/lottieAnimationView"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/profileImage" />
 
     <!--  Horizontal LinearLayout for for 1 TextView and 1 ImageView -->
     <LinearLayout
         android:id="@+id/linearLayout4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:background="@drawable/grey_bg"
         android:gravity="center"
         android:paddingLeft="10dp"
         android:paddingTop="5dp"
         android:paddingRight="10dp"
         android:paddingBottom="5dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="@+id/textView3"
         app:layout_constraintStart_toStartOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView3">
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
 
         <!--        TextView for show static text-->
         <TextView
@@ -220,6 +220,36 @@
         app:layout_constraintEnd_toEndOf="@+id/textView3"
         app:layout_constraintStart_toStartOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+
+    <!--MaterialButton: to logout from account-->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/logOutBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?selectableItemBackground"
+        android:text="LogOut"
+        app:cornerRadius="8dp"
+        android:backgroundTint="@color/grey"
+        app:icon="@drawable/baseline_directions_run_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/letsFindBtn" />
+
+    <!--MaterialButton: to Deletee the Account-->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/deleteAccountBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logOutBtn"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?selectableItemBackground"
+        app:cornerRadius="8dp"
+        android:backgroundTint="@color/grey"
+        app:layout_constraintTop_toBottomOf="@id/logOutBtn"
+        app:layout_constraintStart_toStartOf="@id/logOutBtn"
+        app:layout_constraintEnd_toEndOf="@id/logOutBtn"
+        android:text="Delete Account"
+        app:icon="@drawable/baseline_delete_24"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

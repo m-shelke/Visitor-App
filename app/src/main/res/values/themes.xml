@@ -8,4 +8,5 @@
     <style name="Theme.VisitorApp" parent="Base.Theme.VisitorApp">
         <item name="android:windowFullscreen">true</item>
     </style>
+
 </resources>

@@ -134,7 +134,7 @@ public class ConnectingActivity extends AppCompatActivity {
 //                                starting activity here
                                 startActivity(intent);
 //                                this activity gonna finished here
-                                finish();
+                             //   finish();
 
                             }
 
@@ -203,7 +203,7 @@ public class ConnectingActivity extends AppCompatActivity {
                                                                     intent.putExtra("isAvailable",snapshot.child("isAvailable").getValue(boolean.class));
                                                                     startActivity(intent);
 //                                                                    this activity will finished here
-                                                                    finish();
+                                                                  //  finish();
                                                                 }
                                                             }
                                                         }
@@ -226,5 +226,11 @@ public class ConnectingActivity extends AppCompatActivity {
 
     }
 
-
+//    @Override
+//    public void onBackPressed() {
+//
+//        startActivity(new Intent(ConnectingActivity.this,MainActivity.class));
+//        finish();
+//        super.onBackPressed();
+//    }
 }

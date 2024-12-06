@@ -105,7 +105,7 @@ public class EarnCoinsActivity extends AppCompatActivity {
 //                            calling loadAds(); for even after watching one Ad, then it will be ready for next clicked as well
                             loadAds();
 //                            granted reward as a +20 coins to Firebase Database
-                            coins = coins + 20;
+                            coins = coins + 200;
 //                          after watching Ad, we increase the coins value to Firebase Database
                             firebaseDatabase.getReference().child("profiles")
                                             .child(currentUid)
@@ -145,7 +145,7 @@ public class EarnCoinsActivity extends AppCompatActivity {
 //                            calling loadAds(); for even after watching one Ad, then it will be ready for next clicked as well
                             loadAds();
 //                            granted reward as a +20 coins to Firebase Database
-                            coins = coins + 50;
+                            coins = coins + 400;
 //                          after watching Ad, we increase the coins value to Firebase Database
                             firebaseDatabase.getReference().child("profiles")
                                     .child(currentUid)
@@ -185,7 +185,7 @@ public class EarnCoinsActivity extends AppCompatActivity {
 //                            calling loadAds(); for even after watching one Ad, then it will be ready for next clicked as well
                             loadAds();
 //                            granted reward as a +20 coins to Firebase Database
-                            coins = coins + 120;
+                            coins = coins + 600;
 //                          after watching Ad, we increase the coins value to Firebase Database
                             firebaseDatabase.getReference().child("profiles")
                                     .child(currentUid)
@@ -225,7 +225,7 @@ public class EarnCoinsActivity extends AppCompatActivity {
 //                            calling loadAds(); for even after watching one Ad, then it will be ready for next clicked as well
                             loadAds();
 //                            granted reward as a +20 coins to Firebase Database
-                            coins = coins + 150;
+                            coins = coins + 800;
 //                          after watching Ad, we increase the coins value to Firebase Database
                             firebaseDatabase.getReference().child("profiles")
                                     .child(currentUid)
@@ -265,7 +265,7 @@ public class EarnCoinsActivity extends AppCompatActivity {
 //                            calling loadAds(); for even after watching one Ad, then it will be ready for next clicked as well
                             loadAds();
 //                            granted reward as a +20 coins to Firebase Database
-                            coins = coins + 200;
+                            coins = coins + 1000;
 //                          after watching Ad, we increase the coins value to Firebase Database
                             firebaseDatabase.getReference().child("profiles")
                                     .child(currentUid)

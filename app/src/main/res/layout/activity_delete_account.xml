@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".Activity.DeleteAccountActivity">
+
+    <RelativeLayout
+        android:id="@+id/toolbarRL"
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+
+        <!-- ImageView: click to go back-->
+        <ImageButton
+            android:id="@+id/toolbarBackBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_arrow_back_ios_new_24"
+            android:layout_centerVertical="true"
+            android:background="@android:color/transparent"
+            android:padding="10dp"/>
+
+        <!-- TextViw-To show toolbar title -->
+        <TextView
+            android:id="@+id/toolbarTitleTv"
+            style="@style/TextAppearance.MaterialComponents.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_toEndOf="@id/toolbarBackBtn"
+            android:layout_centerVertical="true"
+            android:text="Delete Account" />
+
+        <!-- View: To make Toolbar look separate from other UI-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/black"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_below="@id/toolbarRL"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp">
+
+        <!-- ShapeableImageView: Just to show a static image (drawable.account) from drawable-->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/deleteAccountIv"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerHorizontal="true"
+            android:background="#D1C4E9"
+            android:padding="1dp"
+            android:src="@drawable/baseline_delete_sweep_24"
+            app:shapeAppearanceOverlay="@style/ImageStyle_Corner_Rounded"/>
+
+        <!-- TextView: Just to show Lable text-->
+        <TextView
+            android:id="@+id/deleteAccountLableTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:padding="5dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:text="Are You Sure..!! You Want To Delete Your Account Including App Data..? You Will Not Able To Access Your Account Again..!! "
+            android:layout_below="@id/deleteAccountIv"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"/>
+
+        <!-- MaterialButton: clicked to submit new password user info. -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/confirmDeleteBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            app:cornerRadius="8dp"
+            android:minHeight="60dp"
+            android:text="Confirm Delete"/>
+
+        <!--MaterialButton: to verify account-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/verifyAccountBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/confirmDeleteBtn"
+            android:layout_marginBottom="20dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?selectableItemBackground"
+            android:text="Verify Account"
+            app:cornerRadius="8dp"
+            app:icon="@drawable/baseline_arrow_back_ios_new_24"/>
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

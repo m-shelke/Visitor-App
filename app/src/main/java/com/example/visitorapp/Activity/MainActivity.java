@@ -1,6 +1,8 @@
 //MainActivity is the Dashboard of the App User
 package com.example.visitorapp.Activity;
 
+import static android.app.PendingIntent.getActivity;
+
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -42,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
 
 //    initiating firebase Authentication here
     FirebaseAuth firebaseAuth;
+
+//    initiating instance of the FirebaseUser
+    FirebaseUser firebaseUser;
 
 //    initiating Firebase Database
     FirebaseDatabase firebaseDatabase;
@@ -104,6 +109,9 @@ public class MainActivity extends AppCompatActivity {
 //        Getting instance of the Firebase Database
         firebaseDatabase = FirebaseDatabase.getInstance();
 
+//        getting current User of the application form the Firebase Database
+     //   firebaseUser = firebaseAuth.getCurrentUser();
+
 //        Getting current User form firebase database
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
 
@@ -156,12 +164,44 @@ public class MainActivity extends AppCompatActivity {
                                     }
                                 });
 
+//        setting clickListener linearLayout4
+        binding.linearLayout4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Server Charge 200 Coins Per Call", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        //handle logoutBtn click, logout user and start MainActivity
+        binding.logOutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //logout user
+                firebaseAuth.signOut();
+
+                //start MainActivity
+                startActivity(new Intent(MainActivity.this,LoginActivity.class));
+            }
+        });
+
+        //Handle deleteAccountBtn click, Start DeleteAccountActivity
+        binding.deleteAccountBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(MainActivity.this, DeleteAccountActivity.class));
+               // getActivity().finishAffinity(); //remove all activities from back-stack because, we will delete user and it's data, so it may produced null exception if we dont remove it
+            }
+        });
+
 
 //        find id of getStartedBtn from .xml and setOnClickListener to handle finding match partner
-        binding.letsFindBtn.setOnLongClickListener(new View.OnLongClickListener(){
+        binding.letsFindBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             //Overriding onClick abstract method
-            public boolean onLongClick(View v) {
+            public void onClick(View v) {
 
 //                if the permission is granted, then .......
                 if (isPermissionGranted()) {
@@ -195,7 +235,6 @@ public class MainActivity extends AppCompatActivity {
                     askPermission();
                 }
 
-                return true;
             }
         });
 

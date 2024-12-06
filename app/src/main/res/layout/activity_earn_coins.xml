@@ -105,7 +105,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:fontFamily="@font/roboto_bold"
-            android:text=" 20 Coins"
+            android:text=" 200 Coins"
             android:textColor="@color/black" />
 
         <!--        ImageView for displaying the Ads Image-->
@@ -113,7 +113,7 @@
             android:id="@+id/adsVideo1"
             android:layout_width="30dp"
             android:layout_height="27dp"
-            android:layout_marginLeft="220dp"
+            android:layout_marginLeft="210dp"
             android:src="@drawable/ads" />
 
     </LinearLayout>
@@ -147,7 +147,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:fontFamily="@font/roboto_bold"
-            android:text=" 50 Coins"
+            android:text=" 400 Coins"
             android:textColor="@color/black" />
 
         <!--        ImageView for displaying the Ads Image-->
@@ -155,7 +155,7 @@
             android:id="@+id/adsVideo2"
             android:layout_width="30dp"
             android:layout_height="27dp"
-            android:layout_marginLeft="220dp"
+            android:layout_marginLeft="210dp"
             android:src="@drawable/ads" />
 
     </LinearLayout>
@@ -187,7 +187,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" 120 Coins"
+        android:text=" 600 Coins"
         android:textColor="@color/black"
         android:fontFamily="@font/roboto_bold"
         android:layout_marginLeft="10dp"/>
@@ -197,7 +197,7 @@
         android:id="@+id/adsVideo3"
         android:layout_width="30dp"
         android:layout_height="27dp"
-        android:layout_marginLeft="220dp"
+        android:layout_marginLeft="210dp"
         android:src="@drawable/ads"/>
 
     </LinearLayout>
@@ -229,7 +229,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" 150 Coins"
+        android:text=" 800 Coins"
         android:textColor="@color/black"
         android:fontFamily="@font/roboto_bold"
         android:layout_marginLeft="10dp"/>
@@ -239,7 +239,7 @@
         android:id="@+id/adsVideo4"
         android:layout_width="30dp"
         android:layout_height="27dp"
-        android:layout_marginLeft="220dp"
+        android:layout_marginLeft="210dp"
         android:src="@drawable/ads"/>
 
     </LinearLayout>
@@ -269,7 +269,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="200 Coins"
+        android:text=" 1000 Coins"
         android:textColor="@color/black"
         android:fontFamily="@font/roboto_bold"
         android:layout_marginLeft="10dp"/>
@@ -279,7 +279,7 @@
         android:id="@+id/adsVideo5"
         android:layout_width="30dp"
         android:layout_height="27dp"
-        android:layout_marginLeft="220dp"
+        android:layout_marginLeft="202dp"
         android:src="@drawable/ads"/>
 
     </LinearLayout>
