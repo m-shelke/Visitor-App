@@ -4,6 +4,7 @@ package com.example.visitorapp.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -15,10 +16,15 @@ import androidx.core.view.WindowInsetsCompat;
 import com.bumptech.glide.Glide;
 import com.example.visitorapp.R;
 import com.example.visitorapp.databinding.ActivityConnectingBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
@@ -36,7 +42,13 @@ public class ConnectingActivity extends AppCompatActivity {
     //    initiating firebase database
     FirebaseDatabase firebaseDatabase;
 
+    //TAG for logs in logcat, showing error via this TAG
+    private static final String TAG="DELETE_ACCOUNT_TAG";
+
     boolean isOkay = false;
+
+    //    FirebaseUser instance for getting CurrentUser ID and it's related task
+    FirebaseUser currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +65,9 @@ public class ConnectingActivity extends AppCompatActivity {
 
 //        Getting instance of the Firebase Auth
         firebaseAuth = FirebaseAuth.getInstance();
+
+        //Initiating FirebaseUser here
+        currentUser = firebaseAuth.getCurrentUser();
 
         //        getting instance of the Firebase Database
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -81,11 +96,10 @@ public class ConnectingActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
 
 //                        Room is available
+                        isOkay = true;
 
 //                        if the getChildrenCount is less than 1 then room id is available
-                        if (snapshot.getChildrenCount() >= 0) {
-
-
+                        if (snapshot.getChildrenCount() > 0) {
 
 //                            getting the children of Firebase Database
                             for (DataSnapshot dataSnapshot : snapshot.getChildren()){
@@ -109,9 +123,6 @@ public class ConnectingActivity extends AppCompatActivity {
                                         .child("status")
 //                                        set value 1 for intent CallActivity
                                         .setValue(1);
-
-                                isOkay = true;
-
 
 
 //                                getting the value of "incoming" from firebase database
@@ -224,13 +235,24 @@ public class ConnectingActivity extends AppCompatActivity {
                     }
                 });
 
+
+
     }
 
-//    @Override
-//    public void onBackPressed() {
-//
-//        startActivity(new Intent(ConnectingActivity.this,MainActivity.class));
-//        finish();
-//        super.onBackPressed();
-//    }
+    @Override
+    public void onBackPressed() {
+        delete();
+        super.onBackPressed();
+    }
+
+    public void delete(){
+        firebaseDatabase.getReference().child("users")
+                .removeValue()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Toast.makeText(ConnectingActivity.this, "Canceled", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
 }

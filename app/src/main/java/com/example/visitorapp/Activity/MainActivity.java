@@ -274,8 +274,9 @@ public class MainActivity extends AppCompatActivity {
 //            if the permission is not granted then return false
             if (ActivityCompat.checkSelfPermission(this,permissionArr) !=PackageManager.PERMISSION_GRANTED){
                 return false;
+            }else {
+                return true;
             }
-            return true;
         }
 //        by default permission is true
         return true;
