@@ -2,6 +2,7 @@
 package com.example.visitorapp.Activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -115,6 +116,7 @@ public class CallActivity extends AppCompatActivity {
 ////        if incoming is equals to "strangerUserName" then set incoming to strangerUserName
 //        assert incoming != null;
 //        if (incoming.equalsIgnoreCase(strangerUserName)){
+
             strangerUserName = incoming;
 
 //            calling "setUpWebView" method here
@@ -179,7 +181,7 @@ public class CallActivity extends AppCompatActivity {
     }
 
 //    setup of WebView Client
-    @SuppressLint("SetJavaScriptEnabled")
+
     public void setUpWebView(){
 
 //        setting web view client here
@@ -191,8 +193,10 @@ public class CallActivity extends AppCompatActivity {
 //               super.onPermissionRequest(request);
                
 //               if the android version is .........
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 //                grating all permission, that was demanding form wetWebclient
-                request.grant(request.getResources());
+                    request.grant(request.getResources());
+                }
             }
         });
 
@@ -209,7 +213,7 @@ public class CallActivity extends AppCompatActivity {
 
     public void loadVideoCall(){
 //        loading "call.html" file from "assets" folder
-        String filepath = "file:android_asset/calll.html";  // Or file explorer address of file   D:\Android Studio Program\Projects\Random\app\src\main\assets
+        String filepath = "file:android_asset/callll.html";  // Or file explorer address of file   D:\Android Studio Program\Projects\Random\app\src\main\assets
 
 //        file:android_asset/call.html
 
@@ -492,6 +496,14 @@ public class CallActivity extends AppCompatActivity {
 //        setting the value of "createdBy" to "null"
         databaseReference.child(createdBy).setValue(null);
 //        and finish this activity here
+       // finish();
+
+        startLoginActivity();
+    }
+
+    //    After destroying CallActivity, we launch MainActivity activity
+    private void startLoginActivity(){
+        startActivity(new Intent(CallActivity.this,MainActivity.class));
         finish();
     }
 }

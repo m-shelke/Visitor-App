@@ -42,13 +42,8 @@ public class ConnectingActivity extends AppCompatActivity {
     //    initiating firebase database
     FirebaseDatabase firebaseDatabase;
 
-    //TAG for logs in logcat, showing error via this TAG
-    private static final String TAG="DELETE_ACCOUNT_TAG";
-
     boolean isOkay = false;
 
-    //    FirebaseUser instance for getting CurrentUser ID and it's related task
-    FirebaseUser currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,9 +60,6 @@ public class ConnectingActivity extends AppCompatActivity {
 
 //        Getting instance of the Firebase Auth
         firebaseAuth = FirebaseAuth.getInstance();
-
-        //Initiating FirebaseUser here
-        currentUser = firebaseAuth.getCurrentUser();
 
         //        getting instance of the Firebase Database
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -95,11 +87,12 @@ public class ConnectingActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-//                        Room is available
-                        isOkay = true;
 
 //                        if the getChildrenCount is less than 1 then room id is available
                         if (snapshot.getChildrenCount() > 0) {
+
+//                            Room is available
+                            isOkay = true;
 
 //                            getting the children of Firebase Database
                             for (DataSnapshot dataSnapshot : snapshot.getChildren()){
@@ -198,7 +191,6 @@ public class ConnectingActivity extends AppCompatActivity {
                                                                     if (isOkay)
                                                                         return;
 
-
                                                                     isOkay = true;
 
 //                                                                    if status of the child is 1, and passing some data
@@ -239,20 +231,30 @@ public class ConnectingActivity extends AppCompatActivity {
 
     }
 
+//    if the users Back Pressed, then Room Id generated in the Firebase Database, gonna deleted
+
+
     @Override
-    public void onBackPressed() {
+    protected void onDestroy() {
         delete();
-        super.onBackPressed();
+        super.onDestroy();
     }
 
+    //    creating a  delete(); for, if the user Back Pressed on ConnectingActivity, then the Room ID gonna Deleted
     public void delete(){
         firebaseDatabase.getReference().child("users")
                 .removeValue()
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(ConnectingActivity.this, "Canceled", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ConnectingActivity.this, "Room ID Is Deleted..!!", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    //    After deleting User Account data, we launch LoginActivity activity
+    private void startLoginActivity(){
+        startActivity(new Intent(ConnectingActivity.this,MainActivity.class));
+        finish();
     }
 }
